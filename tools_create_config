@@ -1,0 +1,12 @@
+'''
+name: tools_create_config.py
+desc: Read user sql-generated CSV
+      and create config file based
+      on the CSV Columns
+usage: None, this is called.
+'''
+import os
+
+import sys
+
+print("I am in this directory: " + os.getcwd())

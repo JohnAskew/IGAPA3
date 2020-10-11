@@ -53,6 +53,16 @@ except:
 
     import pandas as pd
 
+try:
+
+    import subprocess
+
+except:
+
+    os.system('pip install subprocess')
+
+    import subprocess
+
 
 #######################################
 # FUNCTIONS
@@ -67,35 +77,27 @@ def log_and_print(msg=''):
     logging.info("# " + os.path.basename(__file__) + ": " + str(msg))
 
 #--------------------------------------
-def export_table(TABLE, saveFile):
+def export_table(sql_name, mysql):
 #--------------------------------------
     
     try:
         
-        if TABLE.startswith( '$' ):
+        pd = C.export_to_pandas(mysql)
+       
+        pd.to_csv((sql_name + '.csv') , na_rep = 0)
 
-            pd = C.export_to_pandas('SELECT * FROM {table_name!q}', {'table_name': TABLE})
-           
-            pd.to_csv((TABLE + '.csv') , na_rep = 0)
+        pd_rows, pd_cols = pd.shape
 
-            pd_rows, pd_cols = pd.shape
+        log_and_print(f'EXPORTED ' + str({pd.shape[0]}) + f' rows from table {sql_name}')
 
-            log_and_print(f'EXPORTED ' + str({pd.shape[0]}) + f'rows from table {TABLE}')
-
-        else:
-
-            myFile = C.export_to_file(saveFile, TABLE, export_params={"with_column_names":True})
-
-            stmt = C.last_statement()
-
-            log_and_print("EXPORTED " + str(stmt.rowcount()) + " rows from table " + TABLE + " in " + str(stmt.execution_time) + " sec")
+       
 
 
     except Exception as e:
 
         log_and_print("#######################################")
 
-        log_and_print("ERROR: unable to READ table " + TABLE +  " Aborting with no action taken!")
+        log_and_print("ERROR: unable to READ table " + sql_name +  " Aborting with no action taken!")
 
         log_and_print("#######################################")
 
@@ -111,13 +113,17 @@ def export_table(TABLE, saveFile):
 
 from igapa2_linkage import *
 
-TABLE = 'EXA_DB_SIZE_HOURLY'
+sql_name = 'EXA_DB_SIZE_HOURLY'
+
+mysql = 'hdd_write.sql'
 
 if len(sys.argv) > 1:
 
     if len(sys.argv[10]) > 0:
 
-        TABLE = sys.argv[10]
+        sql_name = sys.argv[10]
+
+        mysql    = sys.argv[11]
 
 my_pgm = os.path.basename(__file__)
 
@@ -136,7 +142,7 @@ log_and_print("# Entering " + os.path.basename(__file__))
 
 log_and_print("#--------------------------------------#")
 
-log_and_print("called with TABLE -->" + TABLE )
+log_and_print("called with sql_name -->" + sql_name )
 
 
 
@@ -165,7 +171,7 @@ os.chdir(myPath)                    # move into the newly created sub-dir
 
 log_and_print("working dir directory " + myPath )
 
-subject= TABLE
+subject= sql_name
 
 saveFile=(subject + '.csv')    # The RESUlTS we are saving on a daily basis
 
@@ -244,4 +250,52 @@ except Exception as e:
     
     sys.exit(12)
 
-export_table(TABLE, saveFile)
+export_table(sql_name, mysql)
+
+saveFile=(sql_name + '.csv')    # The RESUlTS we are saving on a daily basis
+
+if os.path.exists(saveFile):
+
+    pass
+
+else:
+
+    log_and_print("########################################")
+
+    log_and_print("ERROR: Unable to find " + saveFile + ". Aborting here.")
+
+    log_and_print("########################################")
+    
+    log_and_print(e)
+
+    raise AttributeError("# " + os.path.basename(__file__) + ": Unable to find " + saveFile + ". Aborting here")
+    
+    sys.exit(12)
+
+try:
+   
+    subr_rc = subprocess.call(["python", (currPath + "/" + "tools_create_config.py")
+                                               , myPath
+                                               , saveFile
+                                               ])
+except Exception as e:
+
+    log_and_print("########################################")
+
+    log_and_print("ERROR: call to tools_create_config failed. See export_sql_to_csv.log for details. Aborting.")
+
+    log_and_print("########################################")
+
+    log_and_print(e)
+
+    sys.exit(12)
+
+if subr_rc > 0 :
+
+    log_and_print("########################################")
+
+    log_and_print("ERROR: call to tools_create_config failed. See tools_create_config.log for details. Aborting.")
+
+    log_and_print("########################################")
+
+    sys.exit(12)

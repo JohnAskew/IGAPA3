@@ -256,7 +256,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
 
-        pass_config = 'config_report4.ini'
+        pass_config = 'config_report2.ini'
 
         pass_jira_source = ''
 
@@ -502,6 +502,37 @@ else:
     log_and_print("# " +  str(new_dir + '\\' +  HOURLY_TBLZ[0]))
 
     log_and_print("#####################################")
+
+if os.path.isdir('./sql'):
+
+    for entry in os.listdir('./sql'):
+
+        if os.path.isfile(os.path.join('./sql', entry)):
+
+            my_config = (entry + ".ini")
+
+            log_and_print("sql file " + entry + " will be used to create " + str(new_dir + '\\' + my_config))
+
+            subr_rc = subprocess.call(["python", dir_path + "/" + "subr_charts.py", str(new_dir), str(new_dir + '\\' + my_config)])
+
+
+        else:
+
+            logging.info("#####################################")
+
+            logging.info("# " + os.path.basename(__file__) + " succeessful exit.")
+
+            logging.info("#####################################")
+
+            sys.exit(0)
+
+else:
+
+    log_and_print("#--------------------------------------#")
+
+    log_and_print("No sql directory found. Exitting program successfully")
+
+    log_and_print("---------------------------------------#")
 
 logging.info("#####################################")
 

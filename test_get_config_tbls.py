@@ -167,5 +167,79 @@ if __name__ == '__main__':
             sys.exit(12)
 
 
+if os.path.isdir('./sql'):
+
+    pass
+
+else:
+
+    log_and_print("#--------------------------------------#")
+
+    log_and_print("No sql directory found. Exitting program successfully")
+
+    log_and_print("---------------------------------------#")
+
+    sys.exit(0)
+
+for entry in os.listdir('./sql'):
+
+    if os.path.isfile(os.path.join('./sql', entry)):
+
+        pass
+
+    else:
+
+        log_and_print("#--------------------------------------#")
+
+        log_and_print("No extra sql found. Exitting program successfully")
+
+        log_and_print("---------------------------------------#")
+
+        sys.exit(0)
+
+    with open(os.path.join('./sql', entry)) as mysql:
+
+        mysql_parts = (mysql.readlines())
+
+        mysql_whole = (''.join(mysql_parts))
+
+        try:
+
+            subr_rc = subprocess.call(["python", "./" + "export_sql_to_csv.py"
+                                                       , pass_config
+                                                       , pass_jira_source
+                                                       , pass_jira_user
+                                                       , pass_jira_pw
+                                                       , pass_host
+                                                       , pass_port
+                                                       , pass_user
+                                                       , pass_pw
+                                                       , pass_schema
+                                                       , entry
+                                                       , mysql_whole
+                                                       ])
+        except Exception as e:
+
+            log_and_print("########################################")
+
+            log_and_print("ERROR: call to export_sql_to_csv failed. See export_sql_to_csv.log for details. Aborting.")
+
+            log_and_print("########################################")
+
+            log_and_print(e)
+
+            sys.exit(12)
+
+        if subr_rc > 0 :
+
+            log_and_print("########################################")
+
+            log_and_print("ERROR: call to export_sql_to_csv failed. See export_sql_to_csv.log for details. Aborting.")
+
+            log_and_print("########################################")
+
+            sys.exit(12)
+
+
 
 
