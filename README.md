@@ -39,11 +39,9 @@ Update these appropriately for automation defaults.
 **config_admin.ini** - Among other things, holds the JIRA credentials if you are extracting CSV from JIRA ticket.
 
 ### Execution example:
-_Use default config.py settings for extracting DATABASE connectivity settings and visualizing_ > python igapa2.py -c <_any_config_reporting_ini_>
+Process and visualize the database defined in **_config.py*        >>> **python igapa3.py -c** _config_reports.ini_
 
-.Above, the "config.py" starts with "_", as "_config.py".
-
-_download files attached to JIRA ticket EXA-28727_ and visualize> python igapa2.py  -c <_any_config_reporting_ini_>  -j 28727
+Process and visualize CSV files attached to JIRA ticket EXA-28727  >>> **python igapa2.py  -c**   **-j** _28727_
 
 # Command line overrides
 
