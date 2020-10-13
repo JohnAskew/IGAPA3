@@ -41,15 +41,15 @@ Update these appropriately for automation defaults.
 ### Execution example:
 Process and visualize the database defined in **_config.py*        >>> **python igapa3.py -c** _config_reports.ini_
 
-Process and visualize CSV files attached to JIRA ticket EXA-28727  >>> **python igapa2.py  -c** _config_reports2.ini_   **-j** _28727_
+Process and visualize CSV files attached to JIRA ticket EXA-28727  >>> **python igapa3.py  -c** _config_reports2.ini_   **-j** _28727_
 
 # Command line overrides
 
-_Show parameters for igapa2.py_ > python igapa2.py
+_Show parameters for igapa3.py_ > python igapa3.py
 
-_pull database data using overrides_ > python igapa2.py -c config_report2.ini -m 192.168.1.158 -n 8563 -u sys -p secret
+_pull database data using overrides_ > python igapa3.py -c config_report2.ini -m 192.168.1.158 -n 8563 -u sys -p secret
 
-_pull JIRA files attached to ticket EXA-28615 using overrides_ > python2 igapa2.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password
+_pull JIRA files attached to ticket EXA-28615 using overrides_ > python2 igapa3.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
