@@ -378,7 +378,7 @@ if len(config_sections) == 0:
 
 for item in config_sections:
 
-    log_and_print("# " + os.path.basename(__file__) + " received this section from tool_parse_config: " + item)
+    log_and_print("received this section from tool_parse_config: " + item)
 
 
 legend_font_size, legend_location, plotWidth, plotHeight, smallplotWidth, smallplotHeight, largeplotWidth, largeplotHeight = b.read_config_admin_layout(save_dir, 'config_admin.ini')
@@ -481,7 +481,7 @@ os.chdir(in_ticket)
 
 for config_section in config_sections:
 
-    print("config_section: " + config_section + " config_in" + config_in)
+    log_and_print("config_section: " + config_section + " config_in: " + config_in)
 
     process_section = ParseConfig(config_section, config_in) 
 
@@ -933,22 +933,77 @@ for config_section in config_sections:
     # Convert Hourly full TBL1 CONFIG_ROW1_COL_Y_AXIS_1 / _2 to float
     ###############################################################################
 
+    try:
     
-    df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1] = df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1].astype(float)
+        df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1] = df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1].astype(float)
+
+    except Exception as e:
+
+        log_and_print("##########################################")
+
+        log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW1_COL_Y_AXIS_1 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+        log_and_print("##########################################")
+
+        log_and_print(str(e))
+
+        sys.exit(12)
 
     if CONFIG_ROW1_COL_Y_AXIS_2:
 
-        df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2] = df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2].astype(float)
+        try:
+
+            df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2] = df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2].astype(float)
+
+        except Exception as e:
+
+            log_and_print("##########################################")
+
+            log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW1_COL_Y_AXIS_2 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+            log_and_print("##########################################")
+
+            log_and_print(str(e))
+
+            sys.exit(12)
 
     ###############################################################################
     # Convert Hourly 5 day TBL1 CONFIG_ROW1_COL_Y_AXIS_1 / _2 to float
     ###############################################################################
 
-    df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1] = df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1].astype(float)
+    try:
+
+        df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1] = df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1].astype(float)
+
+    except Exception as e:
+
+        log_and_print("##########################################")
+
+        log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW1_COL_Y_AXIS_1 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+        log_and_print("##########################################")
+
+        log_and_print(str(e))
+
+        sys.exit(12)
 
     if CONFIG_ROW1_COL_Y_AXIS_2:
 
-        df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2] = df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2].astype(float)
+        try:
+
+            df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2] = df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2].astype(float)
+
+        except Exception as e:
+
+            log_and_print("##########################################")
+
+            log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW1_COL_Y_AXIS_2 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+            log_and_print("##########################################")
+
+            log_and_print(str(e))
+
+            sys.exit(12)
 
 
   
@@ -958,11 +1013,39 @@ for config_section in config_sections:
 
     if COLS_TBL2:
 
-        df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_1] = df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_1].astype(float)
+        try:
+
+            df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_1] = df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_1].astype(float)
+
+        except Exception as e:
+
+            log_and_print("##########################################")
+
+            log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW2_COL_Y_AXIS_1 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+            log_and_print("##########################################")
+
+            log_and_print(str(e))
+
+            sys.exit(12)
 
         if CONFIG_ROW2_COL_Y_AXIS_2:
 
-            df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_2] = df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_2].astype(float)
+            try:
+
+                df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_2] = df_hourly_full_tbl_2[CONFIG_ROW2_COL_Y_AXIS_2].astype(float)
+
+            except Exception as e:
+
+                log_and_print("##########################################")
+
+                log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW2_COL_Y_AXIS_2 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+                log_and_print("##########################################")
+
+                log_and_print(str(e))
+
+                sys.exit(12)
 
         ###############################################################################
         # Convert Hourly 5 day TBL2 CONFIG_ROW2_COL_Y_AXIS_1 / _2 to float
@@ -981,11 +1064,39 @@ for config_section in config_sections:
 
     if COLS_TBL3:
 
-        df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_1] = df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_1].astype(float)
+        try:
+
+            df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_1] = df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_1].astype(float)
+
+        except Exception as e:
+
+            log_and_print("##########################################")
+
+            log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW3_COL_Y_AXIS_1 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+            log_and_print("##########################################")
+
+            log_and_print(str(e))
+
+            sys.exit(12)
 
         if CONFIG_ROW3_COL_Y_AXIS_2:
 
-            df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_2] = df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_2].astype(float)
+            try:
+
+                df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_2] = df_hourly_full_tbl_3[CONFIG_ROW3_COL_Y_AXIS_2].astype(float)
+
+            except Exception as e:
+
+                log_and_print("##########################################")
+
+                log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW3_COL_Y_AXIS_2 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+                log_and_print("##########################################")
+
+                log_and_print(str(e))
+
+                sys.exit(12)
 
         ###############################################################################
         # Convert Hourly 5 day TBL3 CONFIG_ROW3_COL_Y_AXIS_1 / _2 to float
@@ -1004,11 +1115,39 @@ for config_section in config_sections:
 
     if COLS_TBL4:
 
-        df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_1] = df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_1].astype(float)
+        try:
+
+            df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_1] = df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_1].astype(float)
+
+        except Exception as e:
+
+            log_and_print("##########################################")
+
+            log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW4_COL_Y_AXIS_1 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+            log_and_print("##########################################")
+
+            log_and_print(str(e))
+
+            sys.exit(12)
 
         if CONFIG_ROW4_COL_Y_AXIS_2:
 
-            df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_2] = df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_2].astype(float)
+            try:
+
+                df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_2] = df_hourly_full_tbl_4[CONFIG_ROW4_COL_Y_AXIS_2].astype(float)
+
+            except Exception as e:
+
+                log_and_print("##########################################")
+
+                log_and_print("FATAL! Unable to numerically parse " + CONFIG_ROW4_COL_Y_AXIS_1 + " in query " + CONFIG_HOURLY_TBL + ". Aborting now.")
+
+                log_and_print("##########################################")
+
+                log_and_print(str(e))
+
+                sys.exit(12)
 
         ###############################################################################
         # Convert Hourly 5 day TBL4 CONFIG_ROW4_COL_Y_AXIS_1 / _2 to float
@@ -1063,9 +1202,9 @@ for config_section in config_sections:
 
     if CONFIG_ROW1_COL_Y_AXIS_2:
 
-        line1_tbl1_hourly_7_day.diamond( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_1, legend_label = ('HOURLY ' + CONFIG_ROW1_COL_Y_AXIS_2) )
+        line1_tbl1_hourly_7_day.diamond( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_1, legend_label = (CONFIG_ROW1_COL_Y_AXIS_2) )
 
-    line1_tbl1_hourly_7_day.circle( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_1, legend_label = ("HOURLY"  + CONFIG_ROW1_COL_Y_AXIS_1))
+    line1_tbl1_hourly_7_day.circle( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_1, legend_label = (CONFIG_ROW1_COL_Y_AXIS_1))
 
     line1_tbl1_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -1113,9 +1252,21 @@ for config_section in config_sections:
 
         for count, i in enumerate(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_2]):
 
-            if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+            try:
 
-                line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW1_COL_Y_AXIS_2 + " Outlier")
+                if my_std != 0:
+
+                    if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                        line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW1_COL_Y_AXIS_2 + " Outlier")
+
+            except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
     else:
 
         int_list = []
@@ -1146,9 +1297,21 @@ for config_section in config_sections:
 
         for count, i in enumerate(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1]):
 
-            if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+            try:
 
-                line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW1_COL_Y_AXIS_1 + " Outlier")
+                if my_std != 0:
+
+                    if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                        line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW1_COL_Y_AXIS_1 + " Outlier")
+
+            except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
 
        
 
@@ -1258,9 +1421,9 @@ for config_section in config_sections:
 
         if CONFIG_ROW2_COL_Y_AXIS_2:
 
-            line2_tbl2_hourly_7_day.diamond( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_2, legend_label = ('HOURLY ' + CONFIG_ROW2_COL_Y_AXIS_2) )
+            line2_tbl2_hourly_7_day.diamond( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_2, legend_label = (CONFIG_ROW2_COL_Y_AXIS_2) )
 
-        line2_tbl2_hourly_7_day.circle( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_2, legend_label = ("HOURLY"  + CONFIG_ROW2_COL_Y_AXIS_1))
+        line2_tbl2_hourly_7_day.circle( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_2, legend_label = (CONFIG_ROW2_COL_Y_AXIS_1))
 
         line2_tbl2_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -1278,7 +1441,13 @@ for config_section in config_sections:
 
             for mydate in df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS]:
 
-                int_list.append(date_to_seconds(mydate))
+                try:
+
+                    int_list.append(date_to_seconds(mydate))
+
+                except:
+
+                    int_list.append(date_to_seconds(str(mydate)[:19]))
 
                 int_list = sorted(int_list)
 
@@ -1302,9 +1471,21 @@ for config_section in config_sections:
 
             for count, i in enumerate(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_Y_AXIS_2]):
 
-                if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+                try:
 
-                    line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW2_COL_Y_AXIS_2 + " Outlier")
+                    if my_std !=0:
+
+                        if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                            line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW2_COL_Y_AXIS_2 + " Outlier")
+
+                except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
         else:
 
             int_list = []
@@ -1341,9 +1522,21 @@ for config_section in config_sections:
 
             for count, i in enumerate(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_Y_AXIS_1]):
 
-                if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+                try:
 
-                    line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW2_COL_Y_AXIS_1 + " Outlier")
+                    if my_std != 0:
+
+                        if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                            line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW2_COL_Y_AXIS_1 + " Outlier")
+
+                except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
 
            
         #######################################
@@ -1442,9 +1635,9 @@ for config_section in config_sections:
 
         if CONFIG_ROW3_COL_Y_AXIS_2:
 
-            line3_tbl3_hourly_7_day.diamond( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_3, legend_label = ('HOURLY ' + CONFIG_ROW3_COL_Y_AXIS_2) )
+            line3_tbl3_hourly_7_day.diamond( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_3, legend_label = (CONFIG_ROW3_COL_Y_AXIS_2) )
 
-        line3_tbl3_hourly_7_day.circle( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_3, legend_label = ("HOURLY"  + CONFIG_ROW3_COL_Y_AXIS_1))
+        line3_tbl3_hourly_7_day.circle( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_3, legend_label = (CONFIG_ROW3_COL_Y_AXIS_1))
 
         line3_tbl3_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -1492,9 +1685,21 @@ for config_section in config_sections:
 
             for count, i in enumerate(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_Y_AXIS_2]):
 
-                if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+                try:
 
-                    line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW3_COL_Y_AXIS_2 + " Outlier")
+                    if my_std != 0:
+
+                        if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                            line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW3_COL_Y_AXIS_2 + " Outlier")
+
+                except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
         else:
 
             int_list = []
@@ -1525,9 +1730,21 @@ for config_section in config_sections:
 
             for count, i in enumerate(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_Y_AXIS_1]):
 
-                if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+                try:
 
-                    line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW3_COL_Y_AXIS_1 + " Outlier")
+                    if my_std != 0:
+
+                        if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                            line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW3_COL_Y_AXIS_1 + " Outlier")
+
+                except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
 
            
         #######################################
@@ -1626,9 +1843,9 @@ for config_section in config_sections:
 
         if CONFIG_ROW4_COL_Y_AXIS_2:
 
-            line4_tbl4_hourly_7_day.diamond( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_4, legend_label = ('HOURLY ' + CONFIG_ROW4_COL_Y_AXIS_2) )
+            line4_tbl4_hourly_7_day.diamond( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_4, legend_label = (CONFIG_ROW4_COL_Y_AXIS_2) )
 
-        line4_tbl4_hourly_7_day.circle( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_4, legend_label = ("HOURLY"  + CONFIG_ROW4_COL_Y_AXIS_1))
+        line4_tbl4_hourly_7_day.circle( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_4, legend_label = (CONFIG_ROW4_COL_Y_AXIS_1))
 
         line4_tbl4_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -1670,9 +1887,22 @@ for config_section in config_sections:
 
             for count, i in enumerate(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_Y_AXIS_2]):
 
-                if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+                try:
 
-                    line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW4_COL_Y_AXIS_2 + " Outlier")
+                    if my_std != 0:
+
+                        if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                            line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW4_COL_Y_AXIS_2 + " Outlier")
+
+                except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
+
         else:
 
             int_list = []
@@ -1709,9 +1939,21 @@ for config_section in config_sections:
 
             for count, i in enumerate(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_Y_AXIS_1]):
 
-                if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+                try:
 
-                    line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW4_COL_Y_AXIS_1 + " Outlier")
+                    if my_std != 0:
+
+                        if ( ( i - my_mean ) / my_std ) > outlier_threshold:
+
+                            line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW4_COL_Y_AXIS_1 + " Outlier")
+
+                except Exception as e:
+
+                    log_and_print("#--------------------------------------#")
+
+                    log_and_print("Unable to calculate the outlier_threshold using i: " + str(i) + " my_mean " + str(my_mean) + " my_std " + str(my_std))
+
+                    log_and_print("#--------------------------------------#")
 
            
         #######################################
@@ -1927,3 +2169,5 @@ for config_section in config_sections:
     log_and_print("successfully exited after processing " + config_in)
 
     log_and_print("#--------------------------------------#")
+
+ 

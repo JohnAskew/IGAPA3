@@ -103,9 +103,6 @@ def export_table(sql_name, mysql):
 
         log_and_print(e)
 
-        sys.exit(12)  
-
-
 
 #######################################
 # MAIN LOGIC

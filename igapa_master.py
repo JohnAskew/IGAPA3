@@ -412,12 +412,6 @@ msg_info = "processing igapa pgms in directory " + os.getcwd()
 
 log_and_print(msg_info)
 
-log_and_print("#---------------------------------------")
-
-log_and_print("DIRECTORY " + dir_path + ", using SUB-DIRECTORY : " + new_dir) 
-
-log_and_print("#---------------------------------------")
-
 
 if pass_jira_source:
 
@@ -432,6 +426,12 @@ else:
     log_and_print("Using configdb.dsn as new_dir: " + config_db.dsn)
 
     new_dir = config_db.dsn
+
+log_and_print("#---------------------------------------")
+
+log_and_print("DIRECTORY " + dir_path + ", using SUB-DIRECTORY : " + new_dir) 
+
+log_and_print("#---------------------------------------")
 
 if os.path.exists(new_dir):
 
@@ -515,10 +515,21 @@ if os.path.isdir('./sql'):
 
             subr_rc = subprocess.call(["python", dir_path + "/" + "subr_charts.py", str(new_dir), str(new_dir + '\\' + my_config)])
 
+            if subr_rc > 0:
+
+                log_and_print("#####################################")
+
+                log_and_print("Error from subr_charts.py. Unable to process sql in ./sql directory. Aborting here.")
+
+                log_and_print("Check the errors coming from subr_charts.py for more information")
+
+                log_and_print("#####################################")
+
+                sys.exit(12)
 
         else:
 
-            logging.info("#####################################")
+            log_and_print("#####################################")
 
             logging.info("# " + os.path.basename(__file__) + " succeessful exit.")
 
