@@ -1,5 +1,7 @@
 # igapa3
-Igapa with multi-flexibility 1. Pull from Jira or from DB.2. Run from config file or commandline. 3. Add your own SQL to visualize.
+Igapa with multi-flexibility 
+1. Pull from Jira or from DB.
+2. Run from config file or commandline. 3. Add your own SQL to visualize.
 
 # Usage
 ## Help
@@ -50,6 +52,18 @@ Show parameters for igapa3.py >>> **python igapa3.py**
 Pull database data using overrides >>> **python igapa3.py -c config_report2.ini -m 192.168.1.158 -n 8563 -u sys -p secret**
 
 Pull JIRA files attached to ticket EXA-28615 using overrides >>> **python igapa3.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password**
+
+# Roll your own monitoring using the sql directory
+## Overview:
+You can run and visualize simple queries if you create a folder named sql in the same directory as igapa3.py. Inside the sql folder you can drop your queries. If you are running igapa3.py and using the database parameters (not using the JIRA ticket parameters), then the simple queries will be processed and the output visualized. 
+
+## SQL Criteria
+1. The user query must meet this format:
+COLUMN_1 is a date or timestamp
+COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the data on the cartesian plane (x-axis and y-axis).
+2. The user query must reside inside the folder named sql
+3. The sql folder only contains queries - do not create additional folders or anything else inside the sql folder.
+
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
