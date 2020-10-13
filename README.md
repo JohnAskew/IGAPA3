@@ -1,5 +1,5 @@
-# igapa2
-Igapa with multi source data pull - Jira or from DB.
+# igapa3
+Igapa with multi-flexibility 1. Pull from Jira or from DB.2. Run from config file or commandline. 3. Add your own SQL to visualize.
 
 # Usage
 ## Help
@@ -66,19 +66,25 @@ _pull JIRA files attached to ticket EXA-28615 using overrides_ > python2 igapa2.
 
 **export_cloud_to_csv.py** - Creates directory of server_name (from *_config.py*) and extracts a single database table to local csv using same name.
 
+**export_sql_to_csv.py** - Reads user sql and extracts CSV.
+
 **export_JIRA_to-csv.py** - Passed EXA- ticket and calls *subr_jira_download.py*.
 
 **igapa2_linkage** - Utility to pass parameters. Included in most of the programs.
 
 **igapa_master** - Decides to call processes to Oownload JIRA files or download files from the database.
 
-**igapa2.py** _MAIN PROGRAM to execute_
+**igapa2.py** _Handles program(s) linkage and runs igapa2_validate_config_{jira / db}.py_
+
+**igapa2_main.py** _Validates linkage parameters and calls igpapa_master.py_
 
 **igapa2_main** - Reads igapa2_linkage and calls igapa_master.py using parameters/arguments.
 
 **igapa2_validate_config_db.py** - Reads igapa2_linkage and calls igapa2_main.py using linkage parameters.
 
 **igapa2_validate_config_jira.py** - Validates the JIRA parameters and calls igapa2_main.py using linkage parameters.
+
+**igapa3.py** _MAIN PROGRAM to execute_
 
 **subr_jira_download.py** - Passed EXA- ticket and downloads EXA- ticket attached files.
 
@@ -87,6 +93,8 @@ _pull JIRA files attached to ticket EXA-28615 using overrides_ > python2 igapa2.
 **subr_validate_ticket.py** - Validate JIRA ticket exists on system.
 
 **test_get_config_tbls.py** - Reads config file, extracts Tables and calls *export_cloud_to_csv.py*.
+
+**tools_create_config.py** - Creates the config_report(x).ini for each sql in the ./sql folder
 
 **tools_get_table_cols.py** - Pass in table, get back table columns
 
