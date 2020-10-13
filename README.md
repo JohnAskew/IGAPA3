@@ -45,11 +45,11 @@ Process and visualize CSV files attached to JIRA ticket EXA-28727  >>> **python 
 
 # Command line overrides
 
-_Show parameters for igapa3.py_ > python igapa3.py
+Show parameters for igapa3.py >>> **python igapa3.py**
 
-_pull database data using overrides_ > python igapa3.py -c config_report2.ini -m 192.168.1.158 -n 8563 -u sys -p secret
+Pull database data using overrides >>> **python igapa3.py -c config_report2.ini -m 192.168.1.158 -n 8563 -u sys -p secret**
 
-_pull JIRA files attached to ticket EXA-28615 using overrides_ > python2 igapa3.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password
+Pull JIRA files attached to ticket EXA-28615 using overrides >>> **python igapa3.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password**
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
