@@ -41,7 +41,7 @@ Update these appropriately for automation defaults.
 ### Execution example:
 Process and visualize the database defined in **_config.py*        >>> **python igapa3.py -c** _config_reports.ini_
 
-Process and visualize CSV files attached to JIRA ticket EXA-28727  >>> **python igapa2.py  -c**   **-j** _28727_
+Process and visualize CSV files attached to JIRA ticket EXA-28727  >>> **python igapa2.py  -c** _config_reports2.ini_   **-j** _28727_
 
 # Command line overrides
 
