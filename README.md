@@ -82,8 +82,12 @@ You can run and visualize simple queries if you create a folder named sql in the
 1. The user query must meet this format:
 COLUMN_1 is a date or timestamp
 COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the data on the cartesian plane (x-axis and y-axis).
-2. The user query must reside inside the folder named sql
-3. The sql folder only contains queries - do not create additional folders or anything else inside the sql folder.
+
+2. The user query must reside inside the folder named sql.
+
+3. All scalar functions, such as date formatting or "sum(some_column) MUST use a synonym as the ending of statement, such as **, TO_CHAR(interval_start, 'YYYY-MM-DD HH24') as my_synonym**.
+
+4. The sql folder only contains queries - do not create additional folders or anything else inside the sql folder.
 
 
 # Subroutines and Tools
