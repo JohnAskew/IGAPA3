@@ -36,5 +36,7 @@ CONFIG_ROW4_COL_Y_AXIS_1 = STORAGE_SIZE_AVG    >> Row 4 charts - the first Y-Axi
 
 CONFIG_ROW4_COL_Y_AXIS_2 = STORAGE_SIZE_MAX    >> Row 4 chars  - the second Y-Axis column.
 
-
-
+<img src="image-DB_SIZE1.png" img width=800/>
+<img src="image-DB_SIZE2.png" img width=800/>
+<img src="image-DB_SIZE3.png" img width=800/>
+<img src="image-DB_SIZE4.png" img width=800/>
