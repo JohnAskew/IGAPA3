@@ -3,3 +3,18 @@ Basic overview notes on monitoring and what to look for when tuning.
 
 If you are new to Exasol, most if not all of the desire information can be found in the tables listed on this documentation site: https://docs.exasol.com/6.1/sql_references/metadata/statistical_system_table.htm. 
 Additional table content information can be found by querying SYS.EXA_SYSCAT for more information about each table.
+
+# Additional monitoring
+
+## Turning on profiling and auditing
+
+### Profiling
+
+Overview and usage: https://docs.exasol.com/performance/profiling.htm
+
+ALTER SESSION SET PROFILE = 'ON";
+
+ALTER SYSTEM SET PROFILE = 'ON';
+
+### Auditing
+
