@@ -1,7 +1,11 @@
 # igapa3
-Igapa with multi-flexibility 
-1. Pull from Jira or from DB.
-2. Run from config file or commandline. 3. Add your own SQL to visualize.
+Igapa with multi-flexibility. You can pull from Jira or from DB, run using config files or the commandline, and add your own SQL to visualize.
+## Overview
+The point of this Python tool is to plot numeric data on charts using the BOKEH application. The data can be extracted from CSV files attached to a JIRA ticket or pulled directly from a database. 
+
+### Inputs
+
+### Outputs
 
 # Usage
 ## Help
