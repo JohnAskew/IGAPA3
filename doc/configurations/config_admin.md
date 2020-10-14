@@ -21,3 +21,17 @@ This section has 2 variables:
 user = The JIRA logon user used to authenticate against JIRA when extracting data attached to a JIRA ticket.
 
 passwd = The JIRA logon password.
+
+### MASTER-LAYOUT
+
+This section allows you to format the appearance of each report, such as the size of the font and how big to make the charts.
+
+### REPORTING
+
+log_level is deprecated
+
+outlier_threshold = Using the Z-Score algorithm, how far from the norm do you deviate before we flag you as an anomaly. 
+
+reports_hourly = Number of hours to report on the daily chart, which appears on the right side of each charting row (The big chart).
+
+reports_daily is deprecated
