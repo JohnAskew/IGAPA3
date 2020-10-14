@@ -3,7 +3,7 @@ Igapa with multi-flexibility. You can pull from Jira or from DB, run using confi
 ## Overview
 The point of this Python tool is to plot numeric data on charts using the BOKEH application. The data can be extracted from CSV files attached to a JIRA ticket or pulled directly from a database. 
 
-<img src="./image-MONITOR.png" alt=“Configuration driven report" style=“margin-right: 10px;”>
+<img src="./image-MONITOR.png" img width=“200”>
 
 ### Inputs
 
