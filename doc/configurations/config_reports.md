@@ -8,30 +8,33 @@ There are 5 System load (system health) sets of tables. Each set consists of an 
 
 [DB_SIZE]  >> Arbitray heading meaningful just to the user
 
-CONFIG_HOURLY_TBL        = EXA_DB_SIZE_HOURLY
+CONFIG_HOURLY_TBL        = EXA_DB_SIZE_HOURLY >> (Mandatory) The system statistic table we wish to visualize
 
-CONFIG_DAILY_TBL         = EXA_DB_SIZE_DAILY
+CONFIG_DAILY_TBL         = EXA_DB_SIZE_DAILY  >> Deprecated
 
-CONFIG_ROW1_COL_X_AXIS   = INTERVAL_START
+CONFIG_ROW1_COL_X_AXIS   = INTERVAL_START     >> (Mandatory) Must be a date field to plot the x-axis dateline
 
-CONFIG_ROW1_COL_Y_AXIS_1 = RAW_OBJECT_SIZE_AVG
+CONFIG_ROW1_COL_Y_AXIS_1 = RAW_OBJECT_SIZE_AVG >> (Mandatory) Y-Axis variable. In this case it's an "avg" metric.
 
-CONFIG_ROW1_COL_Y_AXIS_2 = RAW_OBJECT_SIZE_MAX
+CONFIG_ROW1_COL_Y_AXIS_2 = RAW_OBJECT_SIZE_MAX >> Second Y-Axis variable. Ih this case, it's a "max" metric. 
 
-CONFIG_ROW2_COL_X_AXIS   = INTERVAL_START
+CONFIG_ROW2_COL_X_AXIS   = INTERVAL_START      >> Row 2 charts - the date column. Generally the same as CONFIG_ROW1_COL_X_AXIS.
 
-CONFIG_ROW2_COL_Y_AXIS_1 = MEM_OBJECT_SIZE_AVG
+CONFIG_ROW2_COL_Y_AXIS_1 = MEM_OBJECT_SIZE_AVG >> Row 2 charts - first Y-Axis-variable (see above)
 
-CONFIG_ROW2_COL_Y_AXIS_2 = MEM_OBJECT_SIZE_MAX
+CONFIG_ROW2_COL_Y_AXIS_2 = MEM_OBJECT_SIZE_MAX >> Row 2 chars  - second Y-Axis variable.
 
-CONFIG_ROW3_COL_X_AXIS   = INTERVAL_START
+CONFIG_ROW3_COL_X_AXIS   = INTERVAL_START      >> Row 3 charts - the date column.
 
-CONFIG_ROW3_COL_Y_AXIS_1 = RECOMMENDED_DB_RAM_SIZE_AVG
+CONFIG_ROW3_COL_Y_AXIS_1 = RECOMMENDED_DB_RAM_SIZE_AVG >> Row 3 chars - first Y-Axis variable
 
-CONFIG_ROW3_COL_Y_AXIS_2 = RECOMMENDED_DB_RAM_SIZE_MAX
+CONFIG_ROW3_COL_Y_AXIS_2 = RECOMMENDED_DB_RAM_SIZE_MAX >> Row 3 charts - second Y-Axis variable
 
-CONFIG_ROW4_COL_X_AXIS   = INTERVAL_START
+CONFIG_ROW4_COL_X_AXIS   = INTERVAL_START      >> Row 4 charts - the date column.
 
-CONFIG_ROW4_COL_Y_AXIS_1 = STORAGE_SIZE_AVG
+CONFIG_ROW4_COL_Y_AXIS_1 = STORAGE_SIZE_AVG    >> Row 4 charts - the first Y-Axis column
 
-CONFIG_ROW4_COL_Y_AXIS_2 = STORAGE_SIZE_MAX
+CONFIG_ROW4_COL_Y_AXIS_2 = STORAGE_SIZE_MAX    >> Row 4 chars  - the second Y-Axis column.
+
+
+
