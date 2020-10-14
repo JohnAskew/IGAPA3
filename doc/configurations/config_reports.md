@@ -8,7 +8,7 @@ There are 5 System load (system health) sets of tables. Each set consists of an 
 
 [DB_SIZE]  >> Arbitray heading meaningful just to the user
 
-CONFIG_HOURLY_TBL        = EXA_DB_SIZE_HOURLY >> (Mandatory) The system statistic table we wish to visualize
+CONFIG_HOURLY_TBL        = EXA_DB_SIZE_HOURLY >> (Mandatory) The system statistic table we wish to visualize. MUST be an EXA-xxx-HOURLY table.
 
 CONFIG_DAILY_TBL         = EXA_DB_SIZE_DAILY  >> Deprecated
 
