@@ -8,8 +8,11 @@ The point of this Python tool is to plot Exasol database system data (performanc
 ### Inputs
 There are 2 kinds of inputs:
 a. Configuration files which hold your default, repetitive information, such as which database, connection credentials and which reports to run.
+
 b. Commandline parameters which override the configuration files (limited to database connectivity or whether to extract data from a JIRA ticket and not the database.)
+
 *** Note: The commandline parameter "-c" is required, which drives which reports to create. Without this, the "help" or "usage" information is displayed.
+
 c. Optional user queries which allow the user to drive their personal monitoring information.
 
 ### Outputs
@@ -17,7 +20,7 @@ c. Optional user queries which allow the user to drive their personal monitoring
 2. Output logs - most of the programs and utility tools generate a paper (text file) log showing their activity contents.
 3. Compreshenisve commandline displays of each programs's log - so you can see where you are within a running job and what that particular program is doing.
 
-<img src="./image-commandline.png" img width = "100">
+<img src="./image-commandline.png" img width = "600">
 
 # Usage
 ## Help
