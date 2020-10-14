@@ -1,13 +1,23 @@
 # igapa3
 Igapa with multi-flexibility. You can pull from Jira or from DB, run using config files or the commandline, and add your own SQL to visualize.
 ## Overview
-The point of this Python tool is to plot numeric data on charts using the BOKEH application. The data can be extracted from CSV files attached to a JIRA ticket or pulled directly from a database. 
+The point of this Python tool is to plot Exasol database system data (performance numbers) on charts using the BOKEH application. The system data can be extracted from CSV files attached to a JIRA ticket or pulled directly from a database. 
 
-<img src="./image-MONITOR.png" img width=“200”>
+<img src="./image-MONITOR.png" img width=“100”>
 
 ### Inputs
+There are 2 kinds of inputs:
+a. Configuration files which hold your default, repetitive information, such as which database, connection credentials and which reports to run.
+b. Commandline parameters which override the configuration files (limited to database connectivity or whether to extract data from a JIRA ticket and not the database.)
+*** Note: The commandline parameter "-c" is required, which drives which reports to create. Without this, the "help" or "usage" information is displayed.
+c. Optional user queries which allow the user to drive their personal monitoring information.
 
 ### Outputs
+1. The primary output are the visualizations. Multiple web pages are generated to separate and organize the reporting outputs. 
+2. Output logs - most of the programs and utility tools generate a paper (text file) log showing their activity contents.
+3. Compreshenisve commandline displays of each programs's log - so you can see where you are within a running job and what that particular program is doing.
+
+<img src="./image-commandline.png" img width = "100">
 
 # Usage
 ## Help
