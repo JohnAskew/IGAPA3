@@ -1,5 +1,5 @@
 # igapa3
-Igapa with configurable settings and flexibility to pick and choose formats and options. You can pull from Jira or from DB, run using config files or the commandline, and add your own SQL to visualize. You can configure the charts to any size, configure the "ceiling" for the outlier algorithm to flag anomalies, the number of days or hours to display in the default daily chart showing hourly history for the week, etc. 
+Igapa with configurable settings and flexibility to pick and choose formats and options. You can pull from Jira or from DB, run using config files or the commandline, and add your own SQL to visualize. You can configure the charts to any size, configure the "ceiling" for the outlier algorithm to flag anomalies, the number of days or hours to display in the default daily chart showing hourly history for the week, etc. Sounds complex? Relax, we have set up default configurations for you, so just follow the section, "Quick setup of 2 configuration files" and you can start seeing charts.
 
 ## Overview
 The point of this Python tool is to plot Exasol database system data (performance numbers) on charts using the BOKEH application. The system data can be extracted from CSV files attached to a JIRA ticket or pulled directly from a database. 
