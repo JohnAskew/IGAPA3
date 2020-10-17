@@ -89,6 +89,7 @@ COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the d
 
 4. The sql folder only contains queries - do not create additional folders or anything else inside the sql folder.
 
+<img src="image/commit_to_disk_duration.sql.png" img width=400/> <img src="image/image-commit_to_disk_duration.sql.png" img width=500/>
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
