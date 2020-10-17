@@ -185,6 +185,8 @@ except:
 
     import time
 
+from igapa3_predictor import Predictor
+
 my_pgm = os.path.basename(__file__)
 
 now = dt.today().strftime('%Y%m%d_%H%M%S')
@@ -603,6 +605,27 @@ for config_section in config_sections:
 
         sys.exit(13)
 
+    if df_hourly_full_tbl_1.empty:
+
+        log_and_print("#######################################")
+
+        log_and_print("#-------------------------------------#")
+
+        log_and_print(CONFIG_HOURLY_TBL + '.csv' + " is EMPTY. Skipping with no action taken.")
+
+        log_and_print("# --> The CSV had this many rows: " + str(df_hourly_full_tbl_1.shape[0]) + " and this many columns: " +  str(df_hourly_full_tbl_1.shape[1]))
+
+        log_and_print("# --> Are you running a  query containing profile tables without profiling enabled?")
+
+        log_and_print("# --> Are you running a query containing audit tables without auditing enabled?")
+
+        log_and_print("#-------------------------------------#")
+
+        log_and_print("#######################################")
+
+        sys.exit(0)
+
+
     try:
 
         df_hourly_full_tbl_1 = df_hourly_full_tbl_1[COLS_TBL1]
@@ -622,13 +645,13 @@ for config_section in config_sections:
 
         sys.exit(13)
 
-    
 
     try:
 
         df_hourly_full_tbl_1[CONFIG_ROW1_COL_X_AXIS] = pd.to_datetime(df_hourly_full_tbl_1[CONFIG_ROW1_COL_X_AXIS], errors = 'coerce')
 
         df_hourly_full_tbl_1.dropna(inplace = True)
+
 
     except Exception as e:
 
@@ -649,8 +672,50 @@ for config_section in config_sections:
         log_and_print("#-------------------------------------#")
 
         sys.exit(13)
+ 
+    if df_hourly_full_tbl_1.empty:
+
+        log_and_print("#######################################")
+
+        log_and_print("#-------------------------------------#")
+
+        log_and_print(CONFIG_HOURLY_TBL + '.csv' + " could not parse 1st column as datetime. Skipping with no action taken.")
+
+        log_and_print("# --> The CSV had this many rows: " + str(df_hourly_full_tbl_1.shape[0]) + " and this many columns: " +  str(df_hourly_full_tbl_1.shape[1]))
+
+        log_and_print("# --> Are you running a  query containing profile tables without profiling enabled?")
+
+        log_and_print("# --> Are you running a query containing audit tables without auditing enabled?")
+
+        log_and_print("#-------------------------------------#")
+
+        log_and_print("#######################################")
+
+        sys.exit(0)
+
+
 
     date_max_hourly = df_hourly_full_tbl_1[CONFIG_ROW1_COL_X_AXIS].max()
+
+    if str(date_max_hourly) == '1970-01-01 00:00:00':
+
+        log_and_print("#######################################")
+
+        log_and_print("#-------------------------------------#")
+
+        log_and_print(CONFIG_HOURLY_TBL + '.csv' + " could not find valid date for first column. Skipping with no action taken.")
+
+        log_and_print("# --> The CSV had this many rows: " + str(df_hourly_full_tbl_1.shape[0]) + " and this many columns: " +  str(df_hourly_full_tbl_1.shape[1]))
+
+        log_and_print("# --> Are you running a  query containing profile tables without profiling enabled?")
+
+        log_and_print("# --> Are you running a query containing audit tables without auditing enabled?")
+
+        log_and_print("#-------------------------------------#")
+
+        log_and_print("#######################################")
+
+        sys.exit(0)
 
     log_and_print("read " + CONFIG_HOURLY_TBL +  " date_max_hourly: " + str(date_max_hourly))
 
@@ -825,9 +890,7 @@ for config_section in config_sections:
 
             logging.error(e, exc_info = True)
 
-            print(e)
-
-            sys.exit(13)
+            log_and_print(str(e))
 
 
         #######################################
@@ -1342,7 +1405,6 @@ for config_section in config_sections:
         vbar_tbl1_source = ColumnDataSource(data=dict(x = df_hourly_full_tbl_1[CONFIG_ROW1_COL_X_AXIS], 
                                            y1 = df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1]
                                            ))
-
 
 
     vbar_tbl1_tot_col1 = figure(plot_width=smallplotWidth, plot_height=smallplotHeight,  x_axis_type="datetime")
@@ -2135,18 +2197,18 @@ for config_section in config_sections:
     if COLS_TBL2:
  
 
-        line2_tbl2_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW1_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
+        line2_tbl2_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW2_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
                                             formatters = {"$x" :'datetime'}))
     
     if COLS_TBL3:
 
-         line3_tbl3_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW1_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
+         line3_tbl3_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW3_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
                                             formatters = {"$x" :'datetime'}))
 
     if COLS_TBL4:
 
 
-        line4_tbl4_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW1_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
+        line4_tbl4_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW4_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
                                             formatters = {"$x" :'datetime'}))
 
     show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT))
@@ -2169,5 +2231,15 @@ for config_section in config_sections:
     log_and_print("successfully exited after processing " + config_in)
 
     log_and_print("#--------------------------------------#")
+
+#if CONFIG_ROW1_COL_Y_AXIS_2:
+
+p = Predictor(df_hourly_full_tbl_1[COLS_TBL1])
+
+
+# else:
+
+#     predict_rc = Predictor(df_hourly_full_tbl_1[CONFIG_ROW1_COL_X_AXIS]
+#                           ,df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1])
 
  

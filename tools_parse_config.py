@@ -113,27 +113,27 @@ class ParseConfig:
 
         if len(y) == 0:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# FATAL: " + os.path.basename(__file__))
+            log_and_print("# FATAL: " + os.path.basename(__file__))
 
-            logging.error("# config_admin.ini not found or is not readable.")
+            log_and_print("# config_admin.ini not found or is not readable.")
 
-            logging.error("# This program was looking for:", x)
+            log_and_print("# This program was looking for:", x)
 
-            logging.error("#")
+            log_and_print("#")
 
-            logging.error("# Ensure config_admin.ini exists in this directory: " + os.getcwd())
+            log_and_print("# Ensure config_admin.ini exists in this directory: " + os.getcwd())
 
-            logging.error("# ---> Does config_admin.ini exist?")
+            log_and_print("# ---> Does config_admin.ini exist?")
 
-            logging.error("# ---> Is config_admin.ini a readable file?")
+            log_and_print("# ---> Is config_admin.ini a readable file?")
 
-            logging.error("# Here is the output from attempted config file read: " +  y)
+            log_and_print("# Here is the output from attempted config file read: " +  y)
 
-            logging.error("# Aborting with no action taken.")
+            log_and_print("# Aborting with no action taken.")
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
             print("#######################################")
 
@@ -176,13 +176,13 @@ class ParseConfig:
 
         except Exception as e:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# ERROR:", os.path.basename(__file__) + " config_admin.ini " + self.config_admin + " missing login credentials")
+            log_and_print("# ERROR:", os.path.basename(__file__) + " config_admin.ini " + self.config_admin + " missing login credentials")
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error(e, exc_info = True)
+            log_and_print(e, exc_info = True)
 
             print("#######################################")
 
@@ -224,51 +224,29 @@ class ParseConfig:
 
         if len(y) == 0:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# FATAL: " + os.path.basename(__file__))
+            log_and_print("# FATAL: " + os.path.basename(__file__))
 
-            logging.error("# config_admin.ini not found or is not readable.")
+            log_and_print("# config_admin.ini not found or is not readable.")
 
-            logging.error("# This program was looking for: " + x)
+            log_and_print("# This program was looking for: " + x)
 
-            logging.error("#")
+            log_and_print("#")
 
-            logging.error("# Ensure config_admin.ini exists in this directory: " + os.getcwd())
+            log_and_print("# Ensure config_admin.ini exists in this directory: " + os.getcwd())
 
-            logging.error("# ---> Does config_admin.ini exist?")
+            log_and_print("# ---> Does config_admin.ini exist?")
 
-            logging.error("# ---> Is config_admin.ini a readable file?")
+            log_and_print("# ---> Is config_admin.ini a readable file?")
 
-            logging.error("# Here is the output from attempted config file read: " +  y)
+            log_and_print("# Here is the output from attempted config file read: " +  y)
 
-            logging.error("# Aborting with no action taken.")
+            log_and_print("# Aborting with no action taken.")
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            print("#######################################")
-
-            print("# FATAL:", os.path.basename(__file__))
-
-            print("# config_admin.ini not found or is not readable.")
-
-            print("# This program was looking for:", x)
-
-            print("#")
-
-            print("# Ensure config_admin.ini exists in this directory:", os.getcwd())
-
-            print("# ---> Does config_admin.ini exist?")
-
-            print("# ---> Is config_admin.ini a readable file?")
-
-            print("# Here is the output from attempted config file read:", y)
-
-            print("# Aborting with no action taken.")
-
-            print("#######################################")
-
-            sys.exit(0)
+            sys.exit(12)
         
         try:
 
@@ -290,25 +268,19 @@ class ParseConfig:
    
         except Exception as e:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# " + os.path.basename(__file__) + " config_admin.ini " + self.config_admin + "")
+            log_and_print("# " + os.path.basename(__file__) + " config_admin.ini " + self.config_admin + "")
 
-            logging.error(e, exc_info = True)
+            log_and_print(e, exc_info = True)
 
-            logging.error("#######################################")
-
-            print("#######################################")
-
-            print("# ERROR:", os.path.basename(__file__), "config_admin.ini", self.config_admin, "")
+            log_and_print("#######################################")
 
             pass_fail = False
 
-            print("#######################################")
+            log_and_print(str(e))
 
-            print(e)
-
-            sys.exit(0)
+            sys.exit(12)
 
         return (legend_font_size, legend_location, plotWidth, plotHeight, smallplotWidth, smallplotHeight, largeplotWidth, largeplotHeight)
 
@@ -328,51 +300,29 @@ class ParseConfig:
 
         if len(y) == 0:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# FATAL: " + os.path.basename(__file__))
+            log_and_print("# FATAL: " + os.path.basename(__file__))
 
-            logging.error("# config_admin.ini not found or is not readable.")
+            log_and_print("# config_admin.ini not found or is not readable.")
 
-            logging.error("# This program was looking for: " + x)
+            log_and_print("# This program was looking for: " + x)
 
-            logging.error("#")
+            log_and_print("#")
 
-            logging.error("# Ensure config_admin.ini exists in this directory: " + os.getcwd())
+            log_and_print("# Ensure config_admin.ini exists in this directory: " + os.getcwd())
 
-            logging.error("# ---> Does config_admin.ini exist?")
+            log_and_print("# ---> Does config_admin.ini exist?")
 
-            logging.error("# ---> Is config_admin.ini a readable file?")
+            log_and_print("# ---> Is config_admin.ini a readable file?")
 
-            logging.error("# Here is the output from attempted config file read: " +  y)
+            log_and_print("# Here is the output from attempted config file read: " +  y)
 
-            logging.error("# Aborting with no action taken.")
+            log_and_print("# Aborting with no action taken.")
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            print("#######################################")
-
-            print("# FATAL:", os.path.basename(__file__))
-
-            print("# config_admin.ini not found or is not readable.")
-
-            print("# This program was looking for:", x)
-
-            print("#")
-
-            print("# Ensure config_admin.ini exists in this directory:", os.getcwd())
-
-            print("# ---> Does config_admin.ini exist?")
-
-            print("# ---> Is config_admin.ini a readable file?")
-
-            print("# Here is the output from attempted config file read:", y)
-
-            print("# Aborting with no action taken.")
-
-            print("#######################################")
-
-            sys.exit(0)
+            sys.exit(12)
         
         try:
 
@@ -389,13 +339,13 @@ class ParseConfig:
                
         except Exception as e:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# " + os.path.basename(__file__) + " config_admin.ini " + self.config_admin + "")
+            log_and_print("# " + os.path.basename(__file__) + " config_admin.ini " + self.config_admin + "")
 
-            logging.error(e, exc_info = True)
+            log_and_print(e, exc_info = True)
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
             print("#######################################")
 
@@ -456,29 +406,19 @@ class ParseConfig:
 
         except Exception as e:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("# " + os.path.basename(__file__))
+            log_and_print("# " + os.path.basename(__file__))
 
-            logging.error("#Unable to parse config file " + self.which_config)
+            log_and_print("#Unable to parse config file " + self.which_config)
 
-            logging.error("# Aborting with no action taken")
+            log_and_print("# Aborting with no action taken")
 
-            logging.error(e, exc_info = True)
+            log_and_print(e, exc_info = True)
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            print("#######################################")
-
-            print("ERROR:", os.path.basename(__file__))
-
-            print("#Unable to parse config_report4.ini. ")
-
-            print("# Aborting with no action taken")
-
-            print("#######################################")
-
-            print(e)
+            log_and_print(str(e))
 
             sys.exit(0)
 
@@ -504,35 +444,23 @@ class ParseConfig:
 
         except Exception as e:
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            logging.error("FATAL: " + os.path.basename(__file__))
+            log_and_print("FATAL: " + os.path.basename(__file__))
 
-            logging.error("# Unable to config.read " + self.which_config)
+            log_and_print("# Unable to config.read " + self.which_config)
 
-            logging.error("# in section run with config.read: " +  config.read(self.which_config))
+            log_and_print("# in section run with config.read: " +  config.read(self.which_config))
 
-            logging.error("# Aborting with no action taken.")
+            log_and_print("# Aborting with no action taken.")
 
-            logging.error(e, exc_info = True)
+            log_and_print(e, exc_info = True)
 
-            logging.error("#######################################")
+            log_and_print("#######################################")
 
-            print("#######################################")
+            log_and_print(str(e))
 
-            print("FATAL:", os.path.basename(__file__))
-
-            print("# Unable to config.read('config_report4.ini')")
-
-            print("# in section run with config.read:", config.read('config_report4.ini'))
-
-            print("# Aborting with no action taken.")
-
-            print("#######################################")
-
-            print(e)
-
-            sys.exit(0)
+            sys.exit(12)
 
         for item in ['CONFIG_HOURLY_TBL','CONFIG_ROW1_COL_X_AXIS','CONFIG_ROW1_COL_Y_AXIS_1','CONFIG_ROW1_COL_Y_AXIS_2','CONFIG_ROW2_COL_X_AXIS','CONFIG_ROW2_COL_Y_AXIS_1','CONFIG_ROW2_COL_Y_AXIS_2','CONFIG_ROW3_COL_X_AXIS','CONFIG_ROW3_COL_Y_AXIS_1','CONFIG_ROW3_COL_Y_AXIS_2','CONFIG_ROW4_COL_X_AXIS','CONFIG_ROW4_COL_Y_AXIS_1','CONFIG_ROW4_COL_Y_AXIS_2']:
 
@@ -542,17 +470,17 @@ class ParseConfig:
 
             except Exception as e:
 
-                logging.error("# " + os.path.basename(__file__) + " config_report4.ini " + myConfig + " missing -->\t" + item)
+                log_and_print("# " + os.path.basename(__file__) + " config:  " + self.myConfig + " missing -->\t" + item)
 
-                print("# ERROR:", os.path.basename(__file__), "config_report4.ini", myConfig, "missing -->\t", item)
+                log_and_print(str(e))
 
                 pass_fail = False
 
         log_and_print()
 
-        if not pass_fail:
+        assert(pass_fail)
 
-            quit(0)
+            #quit(0)
 
         log_and_print("#--------------------------------------#")
                   
@@ -592,9 +520,9 @@ def log_and_print(msg = ""):
 
 if __name__ == '__main__':
 
-    log_and_print("--> is accessing ParseConfig with ParseConfig('USAGE', 'config_report4.ini'")
+    log_and_print("--> is accessing ParseConfig with ParseConfig('USAGE', 'config_reports.ini'")
 
-    a = ParseConfig('USAGE', 'config_report4.ini')
+    a = ParseConfig('USAGE', 'config_reports.ini')
 
     log_and_print(" __repr__ on a: " + repr(a))
 
