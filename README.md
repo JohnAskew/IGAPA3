@@ -74,7 +74,7 @@ Pull database data using overrides >>> **python igapa3.py -c config_report2.ini 
 
 Pull JIRA files attached to ticket EXA-28615 using overrides >>> **python igapa3.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password**
 
-# Roll your own monitoring using the sql directory
+# (ALPHA (beta testing) FEATURE) Roll your own monitoring using the sql directory
 ## Overview:
 You can run and visualize simple queries if you create a folder named sql in the same directory as igapa3.py. Inside the sql folder you can drop your queries. If you are running igapa3.py and using the database parameters (not using the JIRA ticket parameters), then the simple queries will be processed and the output visualized. 
 
@@ -90,6 +90,9 @@ COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the d
 4. The sql folder only contains queries - do not create additional folders or anything else inside the sql folder.
 
 <img src="image/commit_to_disk_duration.sql.png" img width=400/> <img src="image/image-commit_to_disk_duration.sql.png" img width=500/>
+
+## Currently there are 2 known bugs with using SQL:
+1. If you have an odd number of result columns (excluding the date column), the SQL visualization will fail. Best to keep customized SQL returning only 1 or 2 columns.
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
