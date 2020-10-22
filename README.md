@@ -91,7 +91,7 @@ COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the d
 
 <img src="image/commit_to_disk_duration.sql.png" img width=400/> <img src="image/image-commit_to_disk_duration.sql.png" img width=500/>
 
-## Currently there are 2 known bugs with using SQL:
+## Currently there are known bugs with using SQL:
 1. If you have an odd number of result columns (excluding the date column), the SQL visualization will fail. Best to keep customized SQL returning only 1 or 2 columns.
 
 # Subroutines and Tools
