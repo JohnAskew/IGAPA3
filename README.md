@@ -92,7 +92,7 @@ COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the d
 <img src="image/commit_to_disk_duration.sql.png" img width=400/> <img src="image/image-commit_to_disk_duration.sql.png" img width=500/>
 
 ## Currently there are known bugs with using SQL:
-1. With 2 columns being plotted on a graph, if one metric is in milliseconds and the other is say, number of rows, then the millisecond metric may not display.
+1. With 2 columns being plotted on a graph, if one metric is in milliseconds and the other is say, number of rows, then the millisecond metric may not display. As plotting 2 metrics on a graph require, say, the first 2 metric columns, it best to pair metrics with similar measurements. This was discovered when (sql) duration was on the same chart as out_rows, the duration was suppressed.
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
