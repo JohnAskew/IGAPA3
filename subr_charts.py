@@ -851,7 +851,7 @@ for config_section in config_sections:
 
         date_reports_hourly_ago = date_max_hourly - timedelta(hours= reports_hourly)
 
-        df_hourly_work_tbl_3 = pd.DataFrame(df_hourly_full_tbl_3, columns = COLS_TBL3).copy(deep = True) #["INTERVAL_START", CONFIG_ROW3_COL_Y_AXIS_1, CONFIG_ROW3_COL_Y_AXIS_2])
+        df_hourly_work_tbl_3 = pd.DataFrame(df_hourly_full_tbl_3, columns = COLS_TBL3).copy(deep = True)
 
         df_hourly_work_tbl_3.reset_index(inplace = True, drop = True)
 
@@ -1768,7 +1768,13 @@ for config_section in config_sections:
 
             for mydate in df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS]:
 
-                int_list.append(date_to_seconds(mydate))
+                try:
+
+                    int_list.append(date_to_seconds(mydate))
+
+                except:
+
+                    int_list.append(date_to_seconds(str(mydate)[:19]))
 
                 int_list = sorted(int_list)
 
@@ -1925,7 +1931,13 @@ for config_section in config_sections:
 
             for mydate in df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS]:
 
-                int_list.append(date_to_seconds(mydate))
+                try:
+
+                    int_list.append(date_to_seconds(mydate))
+
+                except:
+
+                    int_list.append(date_to_seconds(str(mydate)[:19]))
 
                 int_list = sorted(int_list)
 
@@ -2232,14 +2244,7 @@ for config_section in config_sections:
 
     log_and_print("#--------------------------------------#")
 
-#if CONFIG_ROW1_COL_Y_AXIS_2:
 
-p = Predictor(df_hourly_full_tbl_1[COLS_TBL1])
+#p = Predictor(df_hourly_full_tbl_3[COLS_TBL3])
 
-
-# else:
-
-#     predict_rc = Predictor(df_hourly_full_tbl_1[CONFIG_ROW1_COL_X_AXIS]
-#                           ,df_hourly_full_tbl_1[CONFIG_ROW1_COL_Y_AXIS_1])
-
- 
+#p.forecast(df_hourly_full_tbl_3[COLS_TBL3])
