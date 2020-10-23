@@ -2204,24 +2204,54 @@ for config_section in config_sections:
 
 
 
-    line1_tbl1_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW1_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
-                                        formatters = {"$x" :'datetime'}))
+    line1_tbl1_hourly_7_day.add_tools(HoverTool(tooltips = [
+                                                (CONFIG_ROW1_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")
+                                               ,("value","$y" )
+                                        ],
+                                        formatters = {
+                                                      "$x" :'datetime'
+                                                     ,"$y" :'printf'
+                                                      }
+                                                )
+                                       )
     if COLS_TBL2:
  
-
-        line2_tbl2_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW2_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
-                                            formatters = {"$x" :'datetime'}))
-    
+        line2_tbl2_hourly_7_day.add_tools(HoverTool(tooltips = [
+                                                (CONFIG_ROW2_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")
+                                               ,("value","$y" )
+                                        ],
+                                        formatters = {
+                                                      "$x" :'datetime'
+                                                     ,"$y" :'printf'
+                                                      }
+                                                )
+                                       )
     if COLS_TBL3:
 
-         line3_tbl3_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW3_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
-                                            formatters = {"$x" :'datetime'}))
+         line3_tbl3_hourly_7_day.add_tools(HoverTool(tooltips = [
+                                                (CONFIG_ROW3_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")
+                                               ,("value","$y" )
+                                        ],
+                                        formatters = {
+                                                      "$x" :'datetime'
+                                                     ,"$y" :'printf'
+                                                      }
+                                                )
+                                       )
 
     if COLS_TBL4:
 
 
-        line4_tbl4_hourly_7_day.add_tools(HoverTool(tooltips = [(CONFIG_ROW4_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")],
-                                            formatters = {"$x" :'datetime'}))
+        line4_tbl4_hourly_7_day.add_tools(HoverTool(tooltips = [
+                                                (CONFIG_ROW4_COL_X_AXIS, "$x{%Y-%m-%d  hour:%H}")
+                                               ,("value","$y" )
+                                        ],
+                                        formatters = {
+                                                      "$x" :'datetime'
+                                                     ,"$y" :'printf'
+                                                      }
+                                                )
+                                       )
 
     show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT))
 
