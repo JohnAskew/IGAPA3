@@ -93,6 +93,7 @@ COLUMN_2...COLUMNx must be populated with numeric data, as we are plotting the d
 
 ## Currently there are known bugs with using SQL:
 1. With 2 columns being plotted on a graph, if one metric is in milliseconds and the other is say, number of rows, then the millisecond metric may not display. As plotting 2 metrics on a graph require, say, the first 2 metric columns, it best to pair metrics with similar measurements. This was discovered when (sql) duration was on the same chart as out_rows, the duration was suppressed.
+2. Best Fit (the yellow line) can sometimes go negative even though 0 is the lowest logical number for a metric.
 
 # Subroutines and Tools
 **_config.py** - Database connectivity parameters such as credentials (Defaults for automation).
