@@ -503,47 +503,49 @@ else:
 
     log_and_print("#####################################")
 
-if os.path.isdir('./sql'):
+if pass_jira_source == "":              #JIRA files do not run files in folder ./sql.
 
-    for entry in os.listdir('./sql'):
+    if os.path.isdir('./sql'):
 
-        if os.path.isfile(os.path.join('./sql', entry)):
+        for entry in os.listdir('./sql'):
 
-            my_config = (entry + ".ini")
+            if os.path.isfile(os.path.join('./sql', entry)):
 
-            log_and_print("sql file " + entry + " will be used to create " + str(new_dir + '\\' + my_config))
+                my_config = (entry + ".ini")
 
-            subr_rc = subprocess.call(["python", dir_path + "/" + "subr_charts.py", str(new_dir), str(new_dir + '\\' + my_config)])
+                log_and_print("sql file " + entry + " will be used to create " + str(new_dir + '\\' + my_config))
 
-            if subr_rc > 0:
+                subr_rc = subprocess.call(["python", dir_path + "/" + "subr_charts.py", str(new_dir), str(new_dir + '\\' + my_config)])
+
+                if subr_rc > 0:
+
+                    log_and_print("#####################################")
+
+                    log_and_print("Error from subr_charts.py. Unable to process sql in ./sql directory. Aborting here.")
+
+                    log_and_print("Check the errors coming from subr_charts.py for more information")
+
+                    log_and_print("#####################################")
+
+                    sys.exit(12)
+
+            else:
 
                 log_and_print("#####################################")
 
-                log_and_print("Error from subr_charts.py. Unable to process sql in ./sql directory. Aborting here.")
+                logging.info("# " + os.path.basename(__file__) + " succeessful exit.")
 
-                log_and_print("Check the errors coming from subr_charts.py for more information")
+                logging.info("#####################################")
 
-                log_and_print("#####################################")
+                sys.exit(0)
 
-                sys.exit(12)
+    else:
 
-        else:
+        log_and_print("#--------------------------------------#")
 
-            log_and_print("#####################################")
+        log_and_print("No sql directory found. Exitting program successfully")
 
-            logging.info("# " + os.path.basename(__file__) + " succeessful exit.")
-
-            logging.info("#####################################")
-
-            sys.exit(0)
-
-else:
-
-    log_and_print("#--------------------------------------#")
-
-    log_and_print("No sql directory found. Exitting program successfully")
-
-    log_and_print("---------------------------------------#")
+        log_and_print("---------------------------------------#")
 
 logging.info("#####################################")
 
