@@ -42,11 +42,13 @@ try:
 
     import bokeh
 
+    from bokeh.io import show
+
     from bokeh.plotting import figure, output_file, show
 
     from bokeh.layouts import column, gridplot
 
-    from bokeh.models import ColumnDataSource, Legend, LabelSet, Label, LegendItem, Div, HoverTool, NumeralTickFormatter
+    from bokeh.models import ColumnDataSource, Legend, LabelSet, Label, LegendItem, Div, HoverTool, NumeralTickFormatter, ColorPicker
 
 except:
 
@@ -56,7 +58,7 @@ except:
 
     from bokeh.layouts  import column, gridplot
 
-    from bokeh.models import ColumnDataSource, Legend, LabelSet, Label, LegendItem, Div
+    from bokeh.models import ColumnDataSource, Legend, LabelSet, Label, LegendItem, Div, HoverTool, NumeralTickFormatter, ColorPicker
 
 try:
 
@@ -204,10 +206,25 @@ outlier_threshold = float(3.0)
 #-------------------------------------#
 def best_fit(xs, ys):
 #-------------------------------------#
+    m = 0
+
+    b = 0
+
     m = (  ( (mean(xs) * mean(ys)) - mean(xs * ys) )  /
            ( (mean(xs) * mean(xs)) - mean(xs * xs))
         )
+
+    if np.all(np.isnan(m)):
+
+        m = -0
+ 
     b = mean(ys) - m * mean(xs)
+
+
+    if np.all(np.isnan(b)):
+
+        b = -0
+  
     return m, b
 
 #-------------------------------------#
@@ -335,6 +352,7 @@ reports_daily = 30
 reports_hourly = 168                          #HOURLY SYS Table over past week
 
 N_hourly_days = 7                      #Needs to match reports_hourly 
+
 
 try:
 
@@ -1303,7 +1321,11 @@ for config_section in config_sections:
 
         regression_line = [ (m * x) + b  for x in xs]
 
-        line1_tbl1_hourly_7_day.line(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW1_COL_Y_AXIS_2)
+        XYZ = line1_tbl1_hourly_7_day.line(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW1_COL_Y_AXIS_2)
+
+        picker = ColorPicker(title = 'Best Fit ROW 1')
+        
+        picker.js_link('color', XYZ.glyph, 'line_color')
 
     #######################################
     # Calculate the OUTLIERS
@@ -1521,8 +1543,11 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            line2_tbl2_hourly_7_day.line(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW2_COL_Y_AXIS_2)
+            XYZ2 = line2_tbl2_hourly_7_day.line(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW2_COL_Y_AXIS_2)
 
+            picker2 = ColorPicker(title = 'Best Fit ROW 2')
+        
+            picker2.js_link('color', XYZ2.glyph, 'line_color')
         #######################################
         # Calculate the OUTLIERS
         #######################################
@@ -1735,7 +1760,11 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            line3_tbl3_hourly_7_day.line(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW3_COL_Y_AXIS_2)
+            XYZ3 = line3_tbl3_hourly_7_day.line(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW3_COL_Y_AXIS_2)
+
+            picker3 = ColorPicker(title = 'Best Fit ROW 3')
+        
+            picker3.js_link('color', XYZ3.glyph, 'line_color')
 
         #######################################
         # Calculate the OUTLIERS
@@ -1949,7 +1978,11 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            line4_tbl4_hourly_7_day.line(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW4_COL_Y_AXIS_2)
+            XYZ4 = line4_tbl4_hourly_7_day.line(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW4_COL_Y_AXIS_2)
+
+            picker4 = ColorPicker(title = 'Best Fit ROW 4')
+        
+            picker4.js_link('color', XYZ4.glyph, 'line_color')
 
         #######################################
         # Calculate the OUTLIERS
@@ -2253,7 +2286,7 @@ for config_section in config_sections:
                                                 )
                                        )
 
-    show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT))
+    show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker, picker2, picker3, picker4))
 
     log_and_print("#--------------------------------------#")
 
@@ -2274,7 +2307,12 @@ for config_section in config_sections:
 
     log_and_print("#--------------------------------------#")
 
+#######################################
+# Stubbed Plug-in
+#######################################
+#p = Predictor(df_hourly_full_tbl_1[COLS_TBL1])
 
-#p = Predictor(df_hourly_full_tbl_3[COLS_TBL3])
+#rnn_prediction = p.forecast(df_hourly_full_tbl_1[COLS_TBL1])
 
-#p.forecast(df_hourly_full_tbl_3[COLS_TBL3])
+#print("rnn_prediction:\n" + str(rnn_prediction))
+
