@@ -74,6 +74,10 @@ Pull database data using overrides >>> **python igapa3.py -c config_report2.ini 
 
 Pull JIRA files attached to ticket EXA-28615 using overrides >>> **python igapa3.py -c config_report2.ini - j 28615 -k exasol_user -l exasol_password**
 
+# Known Bugs with IGAPA3
+1. The actual logs are written to /logs directory, but a ghost log of 0 bytes is written to the current directory. This is more of a bug with loggging, but will explain the 0 byte logs in your IGAPA3 directory.
+
+
 # (ALPHA (beta testing) FEATURE) Roll your own monitoring using the sql directory
 ## Overview:
 You can run and visualize simple queries if you create a folder named sql in the same directory as igapa3.py. Inside the sql folder you can drop your queries. If you are running igapa3.py and using the database parameters (not using the JIRA ticket parameters), then the simple queries will be processed and the output visualized. 
