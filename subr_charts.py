@@ -5,14 +5,20 @@
 #------------------------------------#
 import os, sys
 
-my_pgm = os.path.basename(__file__)
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
 
 
-logging_filename = my_pgm[0:(my_pgm.index('.py'))] + '.log'
+my_pgm = ntpath.basename(os.path.basename(__file__))
 
-if os.path.exists(logging_filename):
 
-    os.remove(logging_filename)
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
 try:
 
@@ -1321,7 +1327,7 @@ for config_section in config_sections:
 
         regression_line = [ (m * x) + b  for x in xs]
 
-        XYZ = line1_tbl1_hourly_7_day.line(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW1_COL_Y_AXIS_2)
+        XYZ = line1_tbl1_hourly_7_day.line(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW1_COL_Y_AXIS_2)
 
         picker = ColorPicker(title = 'Best Fit ROW 1')
         
@@ -1343,7 +1349,8 @@ for config_section in config_sections:
 
                     if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                        line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW1_COL_Y_AXIS_2 + " Outlier")
+                        line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW1_COL_Y_AXIS_2 + " Outlier")
+                        
 
             except Exception as e:
 
@@ -1370,7 +1377,11 @@ for config_section in config_sections:
 
         regression_line = [ (m * x) + b  for x in xs]
 
-        line1_tbl1_hourly_7_day.line(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW1_COL_Y_AXIS_1)
+        XYZ = line1_tbl1_hourly_7_day.line(df_hourly_7_day_tbl_1[CONFIG_ROW1_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.1, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW1_COL_Y_AXIS_1)
+
+        picker = ColorPicker(title = 'Best Fit ROW 1')
+        
+        picker.js_link('color', XYZ.glyph, 'line_color')
 
     #######################################
     # Calculate the OUTLIERS
@@ -1388,7 +1399,8 @@ for config_section in config_sections:
 
                     if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                        line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW1_COL_Y_AXIS_1 + " Outlier")
+                        line1_tbl1_hourly_7_day.circle( x=df_hourly_7_day_tbl_1.iloc[count:count+1,0], y = df_hourly_7_day_tbl_1.iloc[count:count+1,1] , line_width = 7, alpha = 0.3, color=("#CCC000"), legend_label = CONFIG_ROW1_COL_Y_AXIS_1 + " Outlier")
+
 
             except Exception as e:
 
@@ -1435,7 +1447,7 @@ for config_section in config_sections:
 
     vbar_tbl1_tot_col1.title.align = "center"
 
-    vbar_tbl1_tot_col1.title.text_color = "yellow"
+    vbar_tbl1_tot_col1.title.text_color = "yellow" ##1EB913"
 
     vbar_tbl1_tot_col1.title.text_font_size = "15px"
 
@@ -1464,7 +1476,7 @@ for config_section in config_sections:
 
     vbar_tbl1_tot_col2.title.align = "center"
 
-    vbar_tbl1_tot_col2.title.text_color = "yellow"
+    vbar_tbl1_tot_col2.title.text_color = "yellow" ##1EB913"
 
     vbar_tbl1_tot_col2.title.text_font_size = "15px"
 
@@ -1543,11 +1555,12 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            XYZ2 = line2_tbl2_hourly_7_day.line(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW2_COL_Y_AXIS_2)
+            XYZ2 = line2_tbl2_hourly_7_day.line(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW2_COL_Y_AXIS_2)
 
             picker2 = ColorPicker(title = 'Best Fit ROW 2')
         
             picker2.js_link('color', XYZ2.glyph, 'line_color')
+
         #######################################
         # Calculate the OUTLIERS
         #######################################
@@ -1564,7 +1577,7 @@ for config_section in config_sections:
 
                         if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                            line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW2_COL_Y_AXIS_2 + " Outlier")
+                            line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW2_COL_Y_AXIS_2 + " Outlier")
 
                 except Exception as e:
 
@@ -1597,8 +1610,11 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            line2_tbl2_hourly_7_day.line(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW2_COL_Y_AXIS_1)
+            XYZ2 = line2_tbl2_hourly_7_day.line(df_hourly_7_day_tbl_2[CONFIG_ROW2_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW2_COL_Y_AXIS_1)
 
+            picker2 = ColorPicker(title = 'Best Fit ROW 2')
+        
+            picker2.js_link('color', XYZ2.glyph, 'line_color')
         #######################################
         # Calculate the OUTLIERS
         #######################################
@@ -1615,7 +1631,7 @@ for config_section in config_sections:
 
                         if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                            line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW2_COL_Y_AXIS_1 + " Outlier")
+                            line2_tbl2_hourly_7_day.circle( x=df_hourly_7_day_tbl_2.iloc[count:count+1,0], y = df_hourly_7_day_tbl_2.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW2_COL_Y_AXIS_1 + " Outlier")
 
                 except Exception as e:
 
@@ -1650,7 +1666,7 @@ for config_section in config_sections:
 
         vbar_tbl2_tot_col1.title.align = "center"
 
-        vbar_tbl2_tot_col1.title.text_color = "yellow"
+        vbar_tbl2_tot_col1.title.text_color = "yellow" ##1EB913"
 
         vbar_tbl2_tot_col1.title.text_font_size = "15px"
 
@@ -1679,7 +1695,7 @@ for config_section in config_sections:
 
         vbar_tbl2_tot_col2.title.align = "center"
 
-        vbar_tbl2_tot_col2.title.text_color = "yellow"
+        vbar_tbl2_tot_col2.title.text_color = "yellow" ##1EB913"
 
         vbar_tbl2_tot_col2.title.text_font_size = "15px"
 
@@ -1760,7 +1776,7 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            XYZ3 = line3_tbl3_hourly_7_day.line(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW3_COL_Y_AXIS_2)
+            XYZ3 = line3_tbl3_hourly_7_day.line(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW3_COL_Y_AXIS_2)
 
             picker3 = ColorPicker(title = 'Best Fit ROW 3')
         
@@ -1782,7 +1798,7 @@ for config_section in config_sections:
 
                         if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                            line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW3_COL_Y_AXIS_2 + " Outlier")
+                            line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW3_COL_Y_AXIS_2 + " Outlier")
 
                 except Exception as e:
 
@@ -1815,8 +1831,11 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            line3_tbl3_hourly_7_day.line(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW3_COL_Y_AXIS_1)
+            XYZ3 = line3_tbl3_hourly_7_day.line(df_hourly_7_day_tbl_3[CONFIG_ROW3_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW3_COL_Y_AXIS_1)
 
+            picker3 = ColorPicker(title = 'Best Fit ROW 3')
+        
+            picker3.js_link('color', XYZ3.glyph, 'line_color')
         #######################################
         # Calculate the OUTLIERS
         #######################################
@@ -1833,7 +1852,7 @@ for config_section in config_sections:
 
                         if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                            line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW3_COL_Y_AXIS_1 + " Outlier")
+                            line3_tbl3_hourly_7_day.circle( x=df_hourly_7_day_tbl_3.iloc[count:count+1,0], y = df_hourly_7_day_tbl_3.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW3_COL_Y_AXIS_1 + " Outlier")
 
                 except Exception as e:
 
@@ -1868,7 +1887,7 @@ for config_section in config_sections:
 
         vbar_tbl3_tot_col1.title.align = "center"
 
-        vbar_tbl3_tot_col1.title.text_color = "yellow"
+        vbar_tbl3_tot_col1.title.text_color = "yellow" ##1EB913"
 
         vbar_tbl3_tot_col1.title.text_font_size = "15px"
 
@@ -1897,7 +1916,7 @@ for config_section in config_sections:
 
         vbar_tbl3_tot_col2.title.align = "center"
 
-        vbar_tbl3_tot_col2.title.text_color = "yellow"
+        vbar_tbl3_tot_col2.title.text_color = "yellow" #1EB913"
 
         vbar_tbl3_tot_col2.title.text_font_size = "15px"
 
@@ -1978,7 +1997,7 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            XYZ4 = line4_tbl4_hourly_7_day.line(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW4_COL_Y_AXIS_2)
+            XYZ4 = line4_tbl4_hourly_7_day.line(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW4_COL_Y_AXIS_2)
 
             picker4 = ColorPicker(title = 'Best Fit ROW 4')
         
@@ -2000,7 +2019,7 @@ for config_section in config_sections:
 
                         if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                            line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW4_COL_Y_AXIS_2 + " Outlier")
+                            line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,2] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW4_COL_Y_AXIS_2 + " Outlier")
 
                 except Exception as e:
 
@@ -2034,7 +2053,11 @@ for config_section in config_sections:
 
             regression_line = [ (m * x) + b  for x in xs]
 
-            line4_tbl4_hourly_7_day.line(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS], regression_line, color = 'yellow', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW4_COL_Y_AXIS_1)
+            XYZ4 = line4_tbl4_hourly_7_day.line(df_hourly_7_day_tbl_4[CONFIG_ROW4_COL_X_AXIS], regression_line, color = '#1EB913', alpha = 0.3, line_width = 6, legend_label = 'BEST_FIT of ' + CONFIG_ROW4_COL_Y_AXIS_1)
+
+            picker4 = ColorPicker(title = 'Best Fit ROW 4')
+        
+            picker4.js_link('color', XYZ4.glyph, 'line_color')
 
         #######################################
         # Calculate the OUTLIERS
@@ -2052,7 +2075,7 @@ for config_section in config_sections:
 
                         if ( ( i - my_mean ) / my_std ) > outlier_threshold:
 
-                            line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("green"), legend_label = CONFIG_ROW4_COL_Y_AXIS_1 + " Outlier")
+                            line4_tbl4_hourly_7_day.circle( x=df_hourly_7_day_tbl_4.iloc[count:count+1,0], y = df_hourly_7_day_tbl_4.iloc[count:count+1,1] , line_width = 7, alpha = 0.5, color=("#CCC000"), legend_label = CONFIG_ROW4_COL_Y_AXIS_1 + " Outlier")
 
                 except Exception as e:
 
@@ -2087,7 +2110,7 @@ for config_section in config_sections:
 
         vbar_tbl4_tot_col1.title.align = "center"
 
-        vbar_tbl4_tot_col1.title.text_color = "yellow"
+        vbar_tbl4_tot_col1.title.text_color = "yellow" #1EB913"
 
         vbar_tbl4_tot_col1.title.text_font_size = "15px"
 
@@ -2116,7 +2139,7 @@ for config_section in config_sections:
 
         vbar_tbl4_tot_col2.title.align = "center"
 
-        vbar_tbl4_tot_col2.title.text_color = "yellow"
+        vbar_tbl4_tot_col2.title.text_color = "yellow" #1EB913"
 
         vbar_tbl4_tot_col2.title.text_font_size = "15px"
 
@@ -2285,8 +2308,22 @@ for config_section in config_sections:
                                                       }
                                                 )
                                        )
+    if COLS_TBL4:
+        
+        show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker, picker2, picker3, picker4))
 
-    show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker, picker2, picker3, picker4))
+
+    elif COLS_TBL3:
+
+        show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker, picker2, picker3))
+
+    elif COLS_TBL2:
+
+        show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker, picker2))
+
+    else:
+
+        show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker))
 
     log_and_print("#--------------------------------------#")
 

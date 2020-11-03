@@ -50,7 +50,7 @@ class GetDF(object):
 
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
-        logging_filename = my_pgm[0:(my_pgm.index('.py'))] + '.log'
+        logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
         logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'w', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 

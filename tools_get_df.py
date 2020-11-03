@@ -51,6 +51,17 @@ except:
 
 	from pyexasol import ExaConnection
 
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+
+
 ######################################
 class GetDF:
 #######################################
@@ -58,17 +69,23 @@ class GetDF:
     def __init__(self, myconfig = 'DB_SIZE', which_config = 'config_reports.ini'):
 #-------------------------------------#
 
+        my_pgm = ntpath.basename(os.path.basename(__file__))
+
+        logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
+
+        logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'a', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
+   
         self.myconfig = myconfig
 
         self.which_config = which_config
 
-        logging.info("#--------------------------------------#")
+        log_and_print("#--------------------------------------#")
 
-        logging.info("# Entering " + os.path.basename(__file__))
+        log_and_print("# Entering " + os.path.basename(__file__))
 
-        logging.info("#--------------------------------------#")
+        log_and_print("#--------------------------------------#")
 
-        logging.info("# " + os.path.basename(__file__) + " Class GetDF received section heading: " + self.myconfig + " using this config file: " + self.which_config)
+        log_and_print("# " + os.path.basename(__file__) + " Class GetDF received section heading: " + self.myconfig + " using this config file: " + self.which_config)
 
         self.sections_df_hourly = [0]
 
@@ -118,6 +135,17 @@ class GetDF:
 
         return self.sections_list, self.sections_df_hourly
 
+#######################################
+# FUNCTIONS
+#######################################
+#-------------------------------------#
+def log_and_print(msg = ''):
+#-------------------------------------#
+
+    print("# " + os.path.basename(__file__) + ": " + msg)
+
+    logging.info("# " + os.path.basename(__file__) + ": " + msg)
+
 
 
 #######################################
@@ -136,4 +164,4 @@ if __name__ == '__main__':
 
     for section_df in sections_df_hourly:
 
-	    print(section_df.columns())
+	    log_and_print(section_df.columns())

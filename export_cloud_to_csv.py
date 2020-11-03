@@ -53,6 +53,17 @@ except:
 
     import pandas as pd
 
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+
+
 
 #######################################
 # FUNCTIONS
@@ -119,13 +130,13 @@ if len(sys.argv) > 1:
 
         TABLE = sys.argv[10]
 
-my_pgm = os.path.basename(__file__)
+my_pgm = ntpath.basename(os.path.basename(__file__))
 
 my_path = os.getcwd()
 
 now = dt.today().strftime('%Y-%m-%d-%H:%M:%S')
 
-logging_filename = os.path.basename(__file__)[0:(os.path.basename(__file__).index('.py'))] + '.log'
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
 logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'a', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 

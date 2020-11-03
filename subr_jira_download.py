@@ -7,6 +7,15 @@
 import sys, os
 
 try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+try:
 
     import logging
 
@@ -30,7 +39,9 @@ now = dt.today().strftime('%Y-%m-%d-%H:%M:%S')
 
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
-logging_filename = os.path.basename(__file__)[0:(os.path.basename(__file__).index('.py'))] + '.log'
+my_pgm = ntpath.basename(os.path.basename(__file__))
+
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
 logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'w', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
@@ -138,6 +149,8 @@ except:
     sys.exit(13)
 
 
+
+
 #######################################
 # MAIN LOGIC
 #######################################
@@ -154,7 +167,7 @@ if len(sys.argv) == 1:
 
     pass_jira_source = 28615
 
-    log_and_print("Using DEFAULT (testing) pass_jira_source: " + str(pass_jira_source))
+    msg = ("Using DEFAULT (testing) pass_jira_source: " + str(pass_jira_source))
 
 else:
 

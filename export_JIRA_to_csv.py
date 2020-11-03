@@ -53,17 +53,36 @@ except:
 
     logger.error("#######################################")
 
-    print("#######################################")
+    log_and_print("#######################################")
 
-    print("# ERROR in", os.path.basename(__file__))
+    log_and_print("# ERROR in", os.path.basename(__file__))
     
-    print(msg)
+    log_and_print(msg)
 
-    print("#", os.path.basename(__file__), "aborting with no action taken.")
+    log_and_print("#", os.path.basename(__file__), "aborting with no action taken.")
 
-    print("#######################################")
+    log_and_print("#######################################")
 
     sys.exit(13)
+
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+#######################################
+# FUNCTIONS
+#######################################
+#--------------------------------------
+def log_and_print(msg = ""):
+
+    print("# " + os.path.basename(__file__) + ": " + msg)
+
+    logging.info("# " + os.path.basename(__file__) + ": " + msg)
 
 
 #######################################
@@ -84,44 +103,21 @@ class_chart = 'DB_SIZE'
 
 now = dt.today().strftime('%Y%m%d_%H%M%S')
 
-log_level = "INFO"
+my_pgm = ntpath.basename(os.path.basename(__file__))
 
-my_pgm = os.path.basename(__file__)
-
-logging_filename = my_pgm[0:(my_pgm.index('.py'))] + '.log'
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
 logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'w', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
-logging.info("#--------------------------------------#")
+log_and_print("#--------------------------------------#")
 
-logging.info("# Entering " + os.path.basename(__file__))
+log_and_print("# Entering " + os.path.basename(__file__))
 
-logging.info("#--------------------------------------#")
+log_and_print("#--------------------------------------#")
 
 #######################################
 # Save off the old report - do not overlay
 #######################################
-
-if os.path.exists(logging_filename):
-
-    dest = str(logging_filename + '_' + now + '.log')
-
-    try:
-
-        os.rename(logging_filename, dest)
-
-    except Exception as e:
-
-        print("#--------------------------------------#")
-
-        print("# WARNING: " + os.path.basename(__file__) + " Unable to rename " + logging_filename + " to " + dest)
-
-        print("# " + os.path.basename(__file__) + " REUSING " + logging_filename)
-
-        print(e)
-
-        print("#--------------------------------------#")
-
 #-------------------------------------#
 # Extract log_level for reporting details
 # ------------------------------------#
@@ -131,41 +127,42 @@ try:
 
 except Exception as e:
 
-    print("#######################################")
+    log_and_print("#######################################")
 
-    print("# WARNING" + os.path.basename(__file__) )
+    log_and_print("# WARNING")
 
-    print("#-------------------------------------#")
+    log_and_print("#-------------------------------------#")
 
-    print("# Unable to read config_admin.ini section REPORTING to get log_level")
+    log_and_print("# Unable to read config_admin.ini section REPORTING to get log_level")
 
-    print("# Using defaults:")
+    log_and_print("# Using defaults:")
 
-    print("# ===> " + os.path.basename(__file__) + " using log_level of WARNING")
+    log_and_print(" using log_level of WARNING")
 
-    print(e)
+    log_and_print(e)
 
 try:
 
     log_level, outlier_threshold, reports_hourly, reports_daily = b.read_config_admin_reporting('.', 'config_admin.ini')
 
-    print("# " + os.path.basename(__file__) + " REPORTING variables log_level " + log_level )
+    log_and_print("# REPORTING variables log_level " + log_level )
 
 
 except Exception as e:
 
-    print("#------------------------------------#")
+    log_and_print("#------------------------------------#")
 
-    print("WARNING: " + os.path.basename(__file__))
-    print("#------------------------------------#")
+    log_and_print("WARNING")
 
-    print("# " + os.path.basename(__file__) + " unable to reference REPORTING section of config_admin.ini")
+    log_and_print("#------------------------------------#")
 
-    print("# Using defaults:")
+    log_and_print("unable to reference REPORTING section of config_admin.ini")
 
-    print("# ==> log_level " + log_level)
+    log_and_print("Using defaults:")
 
-    print(e)
+    log_and_print("==> log_level " + log_level)
+
+    log_and_print(e)
 
 
 #######################################
@@ -184,13 +181,6 @@ except Exception as e:
 
 
 logger = logging.getLogger()
-
-if log_level in ("DEBUG", "INFO"):
-
-    logger.setLevel(logging.INFO)
-else:
-
-    logger.setLevel(logging.WARNING)
 
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
@@ -218,26 +208,17 @@ except:
     
     msg = "Unable to find tools_parse_config.py"
 
-    logger.error("#######################################")
+    log_and_print("#######################################")
 
-    logger.error("# ERROR in " +  os.path.basename(__file__))
+    log_and_print("ERROR")
     
-    logger.error("# " + msg)
+    log_and_print(msg)
 
-    logger.error("# " +  os.path.basename(__file__) + " aborting with no action taken.")
+    log_and_print("aborting with no action taken.")
 
-    logger.error("#######################################")
+    log_and_print("#######################################")
 
-    print("#######################################")
-
-    print("# ERROR in", os.path.basename(__file__))
-    
-    print(msg)
-
-    print("#", os.path.basename(__file__), "aborting with no action taken.")
-
-    print("#######################################")
-
+   
     sys.exit(13)
 
 
@@ -258,7 +239,7 @@ if __name__ == "__main__":
 
     else:
 
-        in_ticket = 28727
+        in_ticket = 28615
 
         new_dir = str("EXA-" + str(in_ticket))
 
@@ -272,7 +253,7 @@ if __name__ == "__main__":
 
 else:
 
-    in_ticket - 28727
+    in_ticket - 28615
 
     new_dir = str("EXA-" + str(in_ticket))
 
@@ -285,93 +266,66 @@ else:
 #######################################
 
 
-
-
-
-
-#logger.basicConfig(level = logger.INFO, filename = logging_filename, filemode = 'a', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
-
-logger.info("#####################################")
+log_and_print("#####################################")
 
 msg_info = "# Starting " + os.path.basename(__file__)
 
-logger.info(msg_info)
+log_and_print(msg_info)
 
 filename = str(os.getcwd() + '\\' + config_in)
 
 if os.path.exists(filename):
 
-    logger.info("# " + os.path.basename(__file__) + " was given config file " + config_in)
+    log_and_print("was given config file " + config_in)
 
 else:
 
-    logger.error("#####################################")
+    log_and_print("#####################################")
 
-    logger.error("# " + os.path.basename(__file__)) 
+    log_and_print("Could not find config file: " + config_in)
 
-    logger.error("# " + os.path.basename(__file__) + " Could not find config file: " + config_in)
+    log_and_print("Ensure " + config_in + " exists in this directory: " + os.getcwd())
 
-    logger.error("# " + os.path.basename(__file__) + " Ensure " + config_in + " exists in this directory: " + os.getcwd())
+    log_and_print("# ---> Does " + config_in + " exist?")
 
-    logger.error("# ---> Does " + config_in + " exist?")
+    log_and_print("# ---> Is "  + config_in + " a readable file?")
 
-    logger.error("# ---> Is "  + config_in + " a readable file?")
+    log_and_print("Aborting with no action taken")
 
-    logger.error("# " + os.path.basename(__file__) + " Aborting with no action taken")
+    log_and_print("#####################################")
 
-    logger.error("#####################################")
-
-    print("#####################################")
-
-    print("# " + os.path.basename(__file__)) 
-
-    print("# Could not find config file: " + config_in)
-
-    print("# Ensure " + config_in + " exists in this directory: " + os.getcwd())
-
-    print("# ---> Does " + config_in + " exist?")
-
-    print("# ---> Is "  + config_in + " a readable file?")
-
-    print("# " + os.path.basename(__file__) + " Aborting with no action taken")
-
-    print("#####################################")
-
+    
     sys.exit(0)
 
 
+msg_info = "Calling jira_download.py with " + str(in_ticket)
 
+log_and_print(msg_info)
 
+log_and_print("INFO:")
 
+log_and_print("is calling jira_download.py with " + str(in_ticket))
 
-msg_info = "# " + os.path.basename(__file__) + " is calling jira_download.py with " + str(in_ticket)
+log_and_print("#####################################")
 
-logger.info(msg_info)
+log_and_print()
 
-print("# INFO:", os.path.basename(__file__))
+msg_info = "Executing call " + dir_path + '\\' + "subr_jira_download.py " + str(in_ticket)
 
-print("# is calling jira_download.py with", str(in_ticket))
-
-print("#####################################")
-
-print()
-
-msg_info = "# Executing call " + dir_path + '\\' + "subr_jira_download.py " + str(in_ticket)
-
-logger.info(msg_info)
+log_and_print(msg_info)
 
 
 subr_rc = subprocess.call(["python", dir_path + "/" + "subr_jira_download.py", str(in_ticket)])
 
 if subr_rc != 0:
 
-    logger.error("# " + os.path.basename(__file__) + " received return code " + str(subr_rc) + " from subr_jira_download.py")
+    log_and_print(" received return code " + str(subr_rc) + " from subr_jira_download.py")
 
-    logger.error("# " + os.path.basename(__file__) + " Aborting with no action taken.")
+    log_and_print("Aborting with no action taken.")
 
-    print("# " + os.path.basename(__file__) + " Aborting after receiving subr_rc:" + str(subr_rc) + " from subr_jira_download.py")
+    log_and_print("Aborting after receiving subr_rc:" + str(subr_rc) + " from subr_jira_download.py")
 
-    print("#####################################")
+    log_and_print("#####################################")
 
     sys.exit(-1)
 
@@ -381,29 +335,29 @@ if subr_rc != 0:
 
 work_dir = os.path.join(dir_path, new_dir)
 
-msg_info = "# " + os.path.basename(__file__) + " received ticket: " + str(in_ticket) + " creating new_dir " + new_dir
+msg_info = "received ticket: " + str(in_ticket) + " creating new_dir " + new_dir
 
-logger.info(msg_info)
+log_and_print(msg_info)
 
-msg_info = "# " + os.path.basename(__file__) + " | Current directory is " + os.getcwd() + " | Working directory is " + new_dir + " |  Output_dir: " + work_dir
+msg_info = "Current directory is " + os.getcwd() + " | Working directory is " + new_dir + " |  Output_dir: " + work_dir
 
-logger.info(msg_info)
+log_and_print(msg_info)
 
-print("#####################################")
+log_and_print("#####################################")
 
-print("#INFO:", os.path.basename(__file__))
+log_and_print("#INFO:")
 
-print("# received ticket:", in_ticket, "creating new_dir", new_dir)
+log_and_print("# received ticket: " + str(in_ticket ) + " creating new_dir " + new_dir)
 
-print("# Current directory is", os.getcwd())
+log_and_print("# Current directory is " + os.getcwd())
 
-print("# Working directory is", new_dir)
+log_and_print("# Working directory is " + new_dir)
 
-print("# Output_dir:", work_dir)
+log_and_print("# Output_dir: " + work_dir)
 
-print("#####################################")
+log_and_print("#####################################")
 
-print()
+log_and_print()
 
 DAILY_TBLZ   = ['EXA_DB_SIZE_DAILY', 'EXA_SQL_DAILY', 'EXA_MONITOR_DAILY', 'EXA_USAGE_DAILY']
 
@@ -417,19 +371,19 @@ for table in range(len(DAILY_TBLZ)):
 
 os.chdir(dir_path)
 
-msg_info = "# " + os.path.basename(__file__) + " processing igapa pgms in directory " + os.getcwd()
+msg_info = "processing igapa pgms in directory " + os.getcwd()
 
-logger.info(msg_info)
+log_and_print(msg_info)
 
-print("#####################################")
+log_and_print("#####################################")
 
-print("#INFO:", os.path.basename(__file__))
+log_and_print("#INFO:")
 
-print("# processing igapa pgms in directory", os.getcwd())
+log_and_print(("# processing igapa pgms in directory "  + os.getcwd()))
 
-print("#####################################")
+log_and_print("#####################################")
 
-print()
+log_and_print()
 
 if (
      (os.path.exists(work_dir + '\\' + DAILY_TBLZ[0])  and (os.path.exists(work_dir + '\\' + HOURLY_TBLZ[0]))) or
@@ -444,78 +398,46 @@ if (
 
 else:
 
-    print("#####################################")
+    log_and_print("#####################################")
 
-    msg_info = "#####################################"
+    log_and_print("# ===> Check other logs for ERRORS! <=== ")
 
-    logger.warning(msg_info)
+    log_and_print("# ===> Check other logs for ERRORS! <=== ")
 
-    logger.warning("# ===> Check other logs for ERRORS! <=== ")
-
-    logger.warning("# ===> Check other logs for ERRORS! <=== ")
-
-    logger.warning("# ===> Check other logs for ERRORS! <=== ")
+    log_and_print("# ===> Check other logs for ERRORS! <=== ")
  
-    msg_info = "# WARNING: " + os.path.basename(__file__)
+    msg_info = "# WARNING: "
 
-    logger.warning(msg_info)
+    log_and_print(msg_info)
 
-    logger.warning("# processed ticket:\t " +  new_dir)
+    log_and_print("# processed ticket:\t " +  new_dir)
 
-    logger.warning("# BUT did not find any usable CSV files for")
+    log_and_print("# BUT did not find any usable CSV files for")
 
-    logger.warning("# generating charts. Ending processing without any charts.")
+    log_and_print("# generating charts. Ending processing without any charts.")
 
-    logger.warning("#")
+    log_and_print("#")
 
-    logger.warning("# This solution is looking for either: ")
+    log_and_print("# This solution is looking for either: ")
 
-    logger.warning("# " +  str(new_dir + '\\' + DAILY_TBLZ[0]) + " and " +  str(new_dir + '\\' + HOURLY_TBLZ[0]) )
+    log_and_print("# " +  str(new_dir + '\\' + DAILY_TBLZ[0]) + " and " +  str(new_dir + '\\' + HOURLY_TBLZ[0]) )
 
-    logger.warning("# OR")
+    log_and_print("# OR")
 
-    logger.warning("# " +  str(new_dir + '\\' + DAILY_TBLZ[1]) +" and " +  str(new_dir + '\\' + HOURLY_TBLZ[1]) )
+    log_and_print("# " +  str(new_dir + '\\' + DAILY_TBLZ[1]) +" and " +  str(new_dir + '\\' + HOURLY_TBLZ[1]) )
 
-    logger.warning("# OR")
+    log_and_print("# OR")
 
-    logger.warning("# " +  str(new_dir + '\\' + DAILY_TBLZ[2]) + " and " +  str(new_dir + '\\' + HOURLY_TBLZ[2]) )
+    log_and_print("# " +  str(new_dir + '\\' + DAILY_TBLZ[2]) + " and " +  str(new_dir + '\\' + HOURLY_TBLZ[2]) )
 
-    logger.warning("# OR")
+    log_and_print("# OR")
 
-    logger.warning("# " +  str(new_dir + '\\' + DAILY_TBLZ[3]) + " and " +  str(new_dir + '\\' + HOURLY_TBLZ[3]) )
+    log_and_print("# " +  str(new_dir + '\\' + DAILY_TBLZ[3]) + " and " +  str(new_dir + '\\' + HOURLY_TBLZ[3]) )
 
-    logger.warning("#####################################")
+   
 
-    print("# WARNING:", os.path.basename(__file__))
+log_and_print("Removing CSV files downloaded.")
 
-    print("# processed ticket:\t", new_dir)
+log_and_print("succeessful exit.")
 
-    print("# BUT did not find any usable CSV files for")
-
-    print("# generating charts. Ending processing without any charts.")
-
-    print("#")
-
-    print("# This solution is looking for either: ")
-
-    print("#", str(new_dir + '\\' + DAILY_TBLZ[0]), "and", str(new_dir + '\\' + HOURLY_TBLZ[0]) )
-
-    print("# OR")
-
-    print("#", str(new_dir + '\\' + DAILY_TBLZ[1]), "and", str(new_dir + '\\' + HOURLY_TBLZ[1]) )
-
-    print("# OR")
-
-    print("#", str(new_dir + '\\' + DAILY_TBLZ[2]), "and", str(new_dir + '\\' + HOURLY_TBLZ[2]) )
-
-    print("# OR")
-
-    print("#", str(new_dir + '\\' + DAILY_TBLZ[3]), "and", str(new_dir + '\\' + HOURLY_TBLZ[3]) )
-
-    print("#####################################")
-
-logging.info("# " + os.path.basename(__file__) + " Removing CSV files downloaded.")
-
-logger.info("# " + os.path.basename(__file__) + " succeessful exit.")
-
-logger.info("#####################################")
+log_and_print("#####################################")

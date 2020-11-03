@@ -35,3 +35,4 @@ logger.addHandler(file_handler)
 if __name__ == '__main__':
 
 	logger.info("This is a test line for running tools_logger.py")
+	print("This is a test line for running tools_logger.py")

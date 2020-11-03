@@ -52,11 +52,21 @@ except:
 
 now = dt.today().strftime('%Y-%m-%d-%H:%M:%S')
 
-#logging_filename = str(os.path.basename(__file__) + '.log')
-
 from tools_logger import *
 
 from igapa2_linkage import *
+
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+
+
 
 #######################################
 class ParseConfig:
@@ -65,13 +75,13 @@ class ParseConfig:
     def __init__(self, myconfig = 'USAGE', which_config = 'config_report4.ini'):
 #-------------------------------------#
 
+        my_pgm = ntpath.basename(os.path.basename(__file__))
+
         self.myconfig = myconfig
 
         self.which_config = which_config
 
-        my_pgm = os.path.basename(__file__)
-
-        self.logging_filename = my_pgm[0:(my_pgm.index('.py'))] + '.log'
+        self.logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
         logging.basicConfig(filename = self.logging_filename, level=logging.INFO, filemode = 'w', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 

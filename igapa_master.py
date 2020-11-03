@@ -22,11 +22,25 @@ except:
 
     from datetime import datetime as dt
 
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+
+my_pgm = ntpath.basename(os.path.basename(__file__))
+
+
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
+
 my_pgm = os.path.basename(__file__)
 
 now = dt.today().strftime('%Y%m%d_%H%M%S')
 
-logging_filename = my_pgm[0:(my_pgm.index('.py'))] + '.log'
 
 if os.path.exists(logging_filename):
 
@@ -533,11 +547,11 @@ if pass_jira_source == "":              #JIRA files do not run files in folder .
 
                 log_and_print("#####################################")
 
-                logging.info("# " + os.path.basename(__file__) + " succeessful exit.")
+                logging.info("# " + os.path.basename(__file__) + " successful exit.")
 
                 logging.info("#####################################")
 
-                sys.exit(0)
+                #sys.exit(0)
 
     else:
 
@@ -547,8 +561,8 @@ if pass_jira_source == "":              #JIRA files do not run files in folder .
 
         log_and_print("---------------------------------------#")
 
-logging.info("#####################################")
+log_and_print("#####################################")
 
-logging.info("# " + os.path.basename(__file__) + " succeessful exit.")
+log_and_print("# " + os.path.basename(__file__) + " succeessful exit.")
 
-logging.info("#####################################")
+log_and_print("#####################################")

@@ -33,7 +33,17 @@ except:
 
 	import subprocess
 
-my_pgm = os.path.basename(__file__)
+try:
+    import ntpath
+
+except:
+
+    os.system('pip install ntpath')
+
+    import ntpath
+
+
+
 
 #######################################
 # FUNCTIONS
@@ -49,13 +59,13 @@ def log_and_print(msg = ''):
 #######################################
 # MAIN PROCESSING
 #######################################
-my_pgm = os.path.basename(__file__)
+my_pgm = ntpath.basename(os.path.basename(__file__))
 
 my_path = os.getcwd()
 
 now = dt.today().strftime('%Y-%m-%d-%H:%M:%S')
 
-logging_filename = os.path.basename(__file__)[0:(os.path.basename(__file__).index('.py'))] + '.log'
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
 logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'w', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
