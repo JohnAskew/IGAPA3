@@ -91,7 +91,7 @@ my_path = os.getcwd()
 
 now = dt.today().strftime('%Y-%m-%d-%H:%M:%S')
 
-logging_filename = ("./logs/" + os.path.basename(__file__)[0:(os.path.basename(__file__).index('.py'))] + '.log')
+logging_filename = ("./logs/" + my_pgm[0:(my_pgm.index('.py'))] + '.log')
 
 logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 'w', format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s')
 
@@ -258,7 +258,13 @@ if X.pass_jira_source:
 	####################
 	# Exit for X.pass_jira_source being TRUE
 
-	sys.exit(12)
+	log_and_print("######################################")
+
+	log_and_print("Successfully exiting.")
+
+	log_and_print("######################################")
+
+	sys.exit(0)
 
 	####################
 
