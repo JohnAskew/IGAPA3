@@ -41,15 +41,15 @@ except:
 
     import phantomjs
 
-try:
+# try:
 
-    from PIL import Image
+#     from PIL import Image
 
-except:
+# except:
 
-    os.system('pip install PIL')
+os.system('python -m pip install Pillow')
 
-    from PIL import Image
+from PIL import Image
 
 try:
     import ntpath
