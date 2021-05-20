@@ -5,6 +5,10 @@
 #------------------------------------#
 import os, sys
 
+MYPATH=os.getcwd()
+sys.path.insert(0, MYPATH + "\\" + 'chromedriver.exe')
+print("Sys.Path =" + str(sys.path))
+
 #sys.path.insert(0, 'C:\\Users\\joas\\Desktop\\Exasol\\IGAPA3\\chromedriver.exe')
 #print("Sys.Path =" + str(sys.path))
 try:
@@ -40,12 +44,6 @@ except:
     os.system('pip install phantomjs')
 
     import phantomjs
-
-# try:
-
-#     from PIL import Image
-
-# except:
 
 os.system('python -m pip install Pillow')
 
@@ -255,6 +253,8 @@ logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 
 log_level = "INFO"
 
 outlier_threshold = float(3.0)
+
+
   
 #######################################
 # FUNCTTIONS BEFORE MAIN CODE
@@ -397,6 +397,7 @@ in_dir = "./"
 #######################################
 
 os.chdir(in_dir) 
+
 
 #######################################
 # VARIABLES
@@ -2412,21 +2413,39 @@ for config_section in config_sections:
 
         print("FAIL ON " + output_title)
 
+    try:
+
+        if os.path.exists('./images') and (os.path.isdir('./images')):
+
+            ImageDir = 'images'
+    
+        else:
+
+            os.mkdir('images')
+
+            ImageDir = 'images'
+
+
+    except Exception as e:
+
+        log_and_print("#------------------------------------#")
+
+        log_and_print("# WARNING! Unable to create images dir. Images written to current dir")
+
+        log_and_print("#------------------------------------#")
+
     
     driver = webdriver.Chrome()
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument('window_size=1368x768')
-    driver = webdriver.Chrome(executable_path="C:\\Users\\joas\\Desktop\\Exasol\\IGAPA3\\chromedriver.exe", chrome_options=options)
+    #driver = webdriver.Chrome(executable_path=str(save_dir) + "\\chromedriver.exe", chrome_options=options)
+    driver = webdriver.Chrome(executable_path="chromedriver.exe", chrome_options=options)
     
     image_file = (str(save_dir + "\\" + in_ticket + "\\" + config_section + '_' + str(now) +  '.html'))
     p_tbl1
     save_path = (str(save_dir + "\\" + in_ticket + "\\" + config_section + '_' + str(now)))
     save_name = (config_section + '_' + str(now) +  '.png')
-
-    #img1 = Image.open(StringIO(base64.decodestring(driver.get_screenshot_as_base64(image_file))))
-
-    #print (img1)
 
     driver.set_window_size(1366, 2500)
     driver.get(image_file)
@@ -2437,15 +2456,15 @@ for config_section in config_sections:
 
         if CONFIG_ROW1_COL_Y_AXIS_2:
 
-            export_png(p_ctbl1, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW1_COL_Y_AXIS_1 + " & " + CONFIG_ROW1_COL_Y_AXIS_2 + ".png")
+            export_png(p_ctbl1, filename = ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW1_COL_Y_AXIS_1 + " & " + CONFIG_ROW1_COL_Y_AXIS_2 + ".png")
 
         elif CONFIG_ROW1_COL_Y_AXIS_1:
 
-                export_png(p_ctbl1, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW1_COL_Y_AXIS_1 + ".png")
+                export_png(p_ctbl1, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW1_COL_Y_AXIS_1 + ".png")
 
         else:
 
-                export_png(p_ctbl1, filename = config_section + '_' + str(now) +   + ".png")
+                export_png(p_ctbl1, filename =  ImageDir + "\\" + config_section + '_' + str(now) +   + ".png")
 
     try:
 
@@ -2459,15 +2478,15 @@ for config_section in config_sections:
 
         if CONFIG_ROW2_COL_Y_AXIS_2:
 
-            export_png(p_ctbl2, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW2_COL_Y_AXIS_1 + " & " + CONFIG_ROW2_COL_Y_AXIS_2 + ".png")
+            export_png(p_ctbl2, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW2_COL_Y_AXIS_1 + " & " + CONFIG_ROW2_COL_Y_AXIS_2 + ".png")
 
         elif CONFIG_ROW2_COL_Y_AXIS_1:
 
-            export_png(p_ctbl2, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW2_COL_Y_AXIS_1 + " & "  + ".png")
+            export_png(p_ctbl2, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW2_COL_Y_AXIS_1 + " & "  + ".png")
 
         else:
 
-            export_png(p_ctbl2, filename = config_section + '_' + str(now) +   ".png")
+            export_png(p_ctbl2, filename =  ImageDir + "\\" + config_section + '_' + str(now) +   ".png")
 
         try:
 
@@ -2481,15 +2500,15 @@ for config_section in config_sections:
 
             if CONFIG_ROW3_COL_Y_AXIS_2:
 
-                export_png(p_ctbl3, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW3_COL_Y_AXIS_1 + " & " + CONFIG_ROW3_COL_Y_AXIS_2 + ".png")
+                export_png(p_ctbl3, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW3_COL_Y_AXIS_1 + " & " + CONFIG_ROW3_COL_Y_AXIS_2 + ".png")
 
             elif CONFIG_ROW3_COL_Y_AXIS_1:
 
-                export_png(p_ctbl3, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW3_COL_Y_AXIS_1 + ".png")
+                export_png(p_ctbl3, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW3_COL_Y_AXIS_1 + ".png")
 
             else:
 
-                export_png(p_ctbl3, filename = config_section + '_' + str(now) + ".png")
+                export_png(p_ctbl3, filename =  ImageDir + "\\" + config_section + '_' + str(now) + ".png")
 
         
         try:
@@ -2504,15 +2523,15 @@ for config_section in config_sections:
 
             if CONFIG_ROW4_COL_Y_AXIS_2:
 
-                export_png(p_ctbl4, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW4_COL_Y_AXIS_1 + " & " + CONFIG_ROW4_COL_Y_AXIS_2 + ".png")
+                export_png(p_ctbl4, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW4_COL_Y_AXIS_1 + " & " + CONFIG_ROW4_COL_Y_AXIS_2 + ".png")
 
             elif CONFIG_ROW4_COL_Y_AXIS_1:
 
-                export_png(p_ctbl4, filename = config_section + '_' + str(now) + "_" + CONFIG_ROW4_COL_Y_AXIS_1 +  ".png")
+                export_png(p_ctbl4, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW4_COL_Y_AXIS_1 +  ".png")
 
             else:
 
-                export_png(p_ctbl4, filename = config_section + '_' + str(now) + "_" +  ".png")
+                export_png(p_ctbl4, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" +  ".png")
 
 
 
