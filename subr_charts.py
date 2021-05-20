@@ -2434,20 +2434,29 @@ for config_section in config_sections:
 
     
     driver = webdriver.Chrome()
+
     options = webdriver.ChromeOptions()
+
     options.add_argument('headless')
+
     options.add_argument('window_size=1368x768')
-    #driver = webdriver.Chrome(executable_path=str(save_dir) + "\\chromedriver.exe", chrome_options=options)
-    driver = webdriver.Chrome(executable_path="chromedriver.exe", chrome_options=options)
+  
+    #driver = webdriver.Chrome(executable_path="chromedriver.exe", chrome_options=options)
     
     image_file = (str(save_dir + "\\" + in_ticket + "\\" + config_section + '_' + str(now) +  '.html'))
+
     p_tbl1
+
     save_path = (str(save_dir + "\\" + in_ticket + "\\" + config_section + '_' + str(now)))
-    save_name = (config_section + '_' + str(now) +  '.png')
+
+    save_name = (ImageDir + "\\" + config_section + '_' + str(now) +  '.png')
 
     driver.set_window_size(1366, 2500)
+
     driver.get(image_file)
+
     driver.save_screenshot(save_name)
+
     driver.quit()
 
     if p_ctbl1:
