@@ -6,11 +6,9 @@
 import os, sys
 
 MYPATH=os.getcwd()
-sys.path.insert(0, MYPATH + "\\" + 'chromedriver.exe')
-print("Sys.Path =" + str(sys.path))
 
-#sys.path.insert(0, 'C:\\Users\\joas\\Desktop\\Exasol\\IGAPA3\\chromedriver.exe')
-#print("Sys.Path =" + str(sys.path))
+sys.path.insert(0, MYPATH + "\\" + 'chromedriver.exe')
+
 try:
 
     import base64
