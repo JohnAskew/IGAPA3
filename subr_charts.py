@@ -5,48 +5,6 @@
 #------------------------------------#
 import os, sys
 
-MYPATH=os.getcwd()
-
-sys.path.insert(0, MYPATH + "\\" + 'chromedriver.exe')
-
-try:
-
-    import base64
-
-except:
-
-    os.system('pip install base64')
-
-    import base64
-
-try:
-
-    import selenium
-
-    from selenium import webdriver
-
-except:
-
-    os.system('pip install selenium')
-
-    import selenium
-
-    from selenium import webdriver
-
-try:
-
-    import phantomjs
-
-except:
-
-    os.system('pip install phantomjs')
-
-    import phantomjs
-
-os.system('python -m pip install Pillow')
-
-from PIL import Image
-
 try:
     import ntpath
 
@@ -98,9 +56,6 @@ try:
 
     from bokeh.models import ColumnDataSource, Legend, LabelSet, Label, LegendItem, Div, HoverTool, NumeralTickFormatter, ColorPicker
 
-    from bokeh.io import export_png
-
-
 except:
 
     os.system('pip install bokeh')
@@ -110,8 +65,6 @@ except:
     from bokeh.layouts  import column, gridplot
 
     from bokeh.models import ColumnDataSource, Legend, LabelSet, Label, LegendItem, Div, HoverTool, NumeralTickFormatter, ColorPicker
-
-    from bokeh.io import export_png
 
 try:
 
@@ -251,8 +204,6 @@ logging.basicConfig(filename = logging_filename, level=logging.INFO, filemode = 
 log_level = "INFO"
 
 outlier_threshold = float(3.0)
-
-
   
 #######################################
 # FUNCTTIONS BEFORE MAIN CODE
@@ -395,7 +346,6 @@ in_dir = "./"
 #######################################
 
 os.chdir(in_dir) 
-
 
 #######################################
 # VARIABLES
@@ -1313,11 +1263,6 @@ for config_section in config_sections:
 
     output_file(output_title, title = config_section)
 
-    outfile = (str(config_section + '_' + str(now) +  '.png'))
-
-
-    
-
     ###############################################################################
     #   #######   #     ####    #      ######  ##
     #      #     #  #   #   #   #      #        #
@@ -1344,9 +1289,9 @@ for config_section in config_sections:
 
     if CONFIG_ROW1_COL_Y_AXIS_2:
 
-        line1_tbl1_hourly_7_day.diamond( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_2 , line_width = 2, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_1, legend_label = (CONFIG_ROW1_COL_Y_AXIS_2) )
+        line1_tbl1_hourly_7_day.diamond( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_1, legend_label = (CONFIG_ROW1_COL_Y_AXIS_2) )
 
-    line1_tbl1_hourly_7_day.circle( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_1 , line_width = 1.5, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_1, legend_label = (CONFIG_ROW1_COL_Y_AXIS_1))
+    line1_tbl1_hourly_7_day.circle( x=CONFIG_ROW1_COL_X_AXIS, y = CONFIG_ROW1_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_1, legend_label = (CONFIG_ROW1_COL_Y_AXIS_1))
 
     line1_tbl1_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -1545,8 +1490,6 @@ for config_section in config_sections:
 
         vbar_tbl1_tot_col2.legend.label_text_font_size = legend_font_size
 
-
-
     ###############################################################################
     #   #######   #     ####    #      ######  ###
     #      #     #  #   #   #   #      #      #  #
@@ -1574,9 +1517,9 @@ for config_section in config_sections:
 
         if CONFIG_ROW2_COL_Y_AXIS_2:
 
-            line2_tbl2_hourly_7_day.diamond( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_2 , line_width = 2, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_2, legend_label = (CONFIG_ROW2_COL_Y_AXIS_2) )
+            line2_tbl2_hourly_7_day.diamond( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_2, legend_label = (CONFIG_ROW2_COL_Y_AXIS_2) )
 
-        line2_tbl2_hourly_7_day.circle( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_1 , line_width = 1.5, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_2, legend_label = (CONFIG_ROW2_COL_Y_AXIS_1))
+        line2_tbl2_hourly_7_day.circle( x=CONFIG_ROW2_COL_X_AXIS, y = CONFIG_ROW2_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_2, legend_label = (CONFIG_ROW2_COL_Y_AXIS_1))
 
         line2_tbl2_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -1795,9 +1738,9 @@ for config_section in config_sections:
 
         if CONFIG_ROW3_COL_Y_AXIS_2:
 
-            line3_tbl3_hourly_7_day.diamond( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_2 , line_width = 2, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_3, legend_label = (CONFIG_ROW3_COL_Y_AXIS_2) )
+            line3_tbl3_hourly_7_day.diamond( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_3, legend_label = (CONFIG_ROW3_COL_Y_AXIS_2) )
 
-        line3_tbl3_hourly_7_day.circle( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_1 , line_width = 1.5, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_3, legend_label = (CONFIG_ROW3_COL_Y_AXIS_1))
+        line3_tbl3_hourly_7_day.circle( x=CONFIG_ROW3_COL_X_AXIS, y = CONFIG_ROW3_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_3, legend_label = (CONFIG_ROW3_COL_Y_AXIS_1))
 
         line3_tbl3_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -2016,9 +1959,9 @@ for config_section in config_sections:
 
         if CONFIG_ROW4_COL_Y_AXIS_2:
 
-            line4_tbl4_hourly_7_day.diamond( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_2 , line_width = 2, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_4, legend_label = (CONFIG_ROW4_COL_Y_AXIS_2) )
+            line4_tbl4_hourly_7_day.diamond( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_2 , line_width = 3, alpha = 0.5, color=("red"),  source=df_hourly_7_day_tbl_4, legend_label = (CONFIG_ROW4_COL_Y_AXIS_2) )
 
-        line4_tbl4_hourly_7_day.circle( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_1 , line_width = 1.5, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_4, legend_label = (CONFIG_ROW4_COL_Y_AXIS_1))
+        line4_tbl4_hourly_7_day.circle( x=CONFIG_ROW4_COL_X_AXIS, y = CONFIG_ROW4_COL_Y_AXIS_1 , line_width = 2, alpha = 0.5, color=("blue"), source=df_hourly_7_day_tbl_4, legend_label = (CONFIG_ROW4_COL_Y_AXIS_1))
 
         line4_tbl4_hourly_7_day.legend.location = legend_location #legend_location
 
@@ -2382,8 +2325,6 @@ for config_section in config_sections:
 
         show(column(Div(text = "<H1 style=\"text-align:center;border:1px solid red;color:yellow;background-color: darkblue;\">" + CONFIG_HOURLY_TBL + "</H1>"), MEM_OBJECT_GRIDPLOT,picker))
 
-    
-    
     log_and_print("#--------------------------------------#")
 
     log_and_print("Exit Stats")
@@ -2403,156 +2344,13 @@ for config_section in config_sections:
 
     log_and_print("#--------------------------------------#")
 
-    if os.path.exists(output_title):
+#######################################
+# Stubbed Plug-in
+#######################################
+#p = Predictor(df_hourly_full_tbl_1[COLS_TBL1])
 
-        print("HIT ON " + output_title)
+#rnn_prediction = p.forecast(df_hourly_full_tbl_1[COLS_TBL1])
 
-    else:
+#print("rnn_prediction:\n" + str(rnn_prediction))
 
-        print("FAIL ON " + output_title)
-
-    try:
-
-        if os.path.exists('./images') and (os.path.isdir('./images')):
-
-            ImageDir = 'images'
-    
-        else:
-
-            os.mkdir('images')
-
-            ImageDir = 'images'
-
-
-    except Exception as e:
-
-        log_and_print("#------------------------------------#")
-
-        log_and_print("# WARNING! Unable to create images dir. Images written to current dir")
-
-        log_and_print("#------------------------------------#")
-
-    
-    driver = webdriver.Chrome()
-
-    options = webdriver.ChromeOptions()
-
-    options.add_argument('headless')
-
-    options.add_argument('window_size=1368x768')
-  
-    #driver = webdriver.Chrome(executable_path="chromedriver.exe", chrome_options=options)
-    
-    image_file = (str(save_dir + "\\" + in_ticket + "\\" + config_section + '_' + str(now) +  '.html'))
-
-    p_tbl1
-
-    save_path = (str(save_dir + "\\" + in_ticket + "\\" + config_section + '_' + str(now)))
-
-    save_name = (ImageDir + "\\" + config_section + '_' + str(now) +  '.png')
-
-    driver.set_window_size(1366, 2500)
-
-    driver.get(image_file)
-
-    driver.save_screenshot(save_name)
-
-    driver.quit()
-
-    if p_ctbl1:
-
-        if CONFIG_ROW1_COL_Y_AXIS_2:
-
-            export_png(p_ctbl1, filename = ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW1_COL_Y_AXIS_1 + " & " + CONFIG_ROW1_COL_Y_AXIS_2 + ".png")
-
-        elif CONFIG_ROW1_COL_Y_AXIS_1:
-
-                export_png(p_ctbl1, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW1_COL_Y_AXIS_1 + ".png")
-
-        else:
-
-                export_png(p_ctbl1, filename =  ImageDir + "\\" + config_section + '_' + str(now) +   + ".png")
-
-    try:
-
-        p_ctbl2
-
-    except:
-
-        pass
-
-    else:
-
-        if CONFIG_ROW2_COL_Y_AXIS_2:
-
-            export_png(p_ctbl2, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW2_COL_Y_AXIS_1 + " & " + CONFIG_ROW2_COL_Y_AXIS_2 + ".png")
-
-        elif CONFIG_ROW2_COL_Y_AXIS_1:
-
-            export_png(p_ctbl2, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW2_COL_Y_AXIS_1 + " & "  + ".png")
-
-        else:
-
-            export_png(p_ctbl2, filename =  ImageDir + "\\" + config_section + '_' + str(now) +   ".png")
-
-        try:
-
-            p_ctbl3
-
-        except:
-
-            pass
-
-        else:
-
-            if CONFIG_ROW3_COL_Y_AXIS_2:
-
-                export_png(p_ctbl3, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW3_COL_Y_AXIS_1 + " & " + CONFIG_ROW3_COL_Y_AXIS_2 + ".png")
-
-            elif CONFIG_ROW3_COL_Y_AXIS_1:
-
-                export_png(p_ctbl3, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW3_COL_Y_AXIS_1 + ".png")
-
-            else:
-
-                export_png(p_ctbl3, filename =  ImageDir + "\\" + config_section + '_' + str(now) + ".png")
-
-        
-        try:
-
-            p_ctbl4
-
-        except:
-
-            pass
-
-        else:
-
-            if CONFIG_ROW4_COL_Y_AXIS_2:
-
-                export_png(p_ctbl4, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW4_COL_Y_AXIS_1 + " & " + CONFIG_ROW4_COL_Y_AXIS_2 + ".png")
-
-            elif CONFIG_ROW4_COL_Y_AXIS_1:
-
-                export_png(p_ctbl4, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" + CONFIG_ROW4_COL_Y_AXIS_1 +  ".png")
-
-            else:
-
-                export_png(p_ctbl4, filename =  ImageDir + "\\" + config_section + '_' + str(now) + "_" +  ".png")
-
-
-
-    # img = Image.open(save_path, save_name)
-    # box = (1,1,1000,1000)
-    # area = img.crop(box)
-    # area.save('cropped_image_' + config_section + '_' + str(now), '.png')
-    
-
-# #######################################
-# # Stubbed Plug-in
-# #######################################
-# p = Predictor(df_hourly_full_tbl_1[COLS_TBL1])
-
-# rnn_prediction = p.forecast(df_hourly_full_tbl_1[COLS_TBL1])
-
-# print("rnn_prediction:\n" + str(rnn_prediction))
+#{"mode":"full","isActive":false}
